@@ -1,0 +1,129 @@
+/* --- Global Container and Typography --- */
+.calendar-container {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 30px auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden; /* Ensures box-shadow is contained */
+}
+
+/* --- Calendar Header --- */
+.headercalendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #FEF6E9; /* Primary color */
+    color: #253939;
+    border-bottom: 1px solid #FEF6E9;
+}
+
+#monthYear {
+    margin: 0;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+/* --- Navigation Buttons --- */
+.headercalendar button {
+    background: none;
+    border: none;
+    color: #253939;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.headercalendar button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.headercalendar button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* --- Calendar Grid (Table) --- */
+#calendar {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures even column width */
+}
+
+#calendar th,
+#calendar td {
+    text-align: center;
+    padding: 5px 0;
+}
+
+#calendar th {
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- Day Number Styling --- */
+.day-number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+    font-size: 1em;
+    color: #333;
+}
+
+#calendar td:hover .day-number {
+    background-color: #e0e0e0;
+}
+
+/* --- Special Date Styles --- */
+
+/* Today's Date */
+.day-number.today {
+    background-color: #FEF6E9;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Selected Date */
+.day-number.selected {
+    background-color: #D2532B; 
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); 
+}
+
+/* --- State Transition (Fade Effect) --- */
+/* This implements the fade-in/fade-out logic used in the component's state */
+#calendar-body {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+/* --- Selected Date Display --- */
+#clicked-date-display {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+}
