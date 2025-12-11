@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Menuicon from './menuicon';
+import Switch from "../ui/components/switch.jsx";
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -16,6 +17,7 @@ export default function Header() {
   const navDropdownRef = useRef<HTMLDivElement | null>(null);
   const AboutusDropdownRef = useRef<HTMLDivElement | null>(null);
   const MoreDropdownRef = useRef<HTMLDivElement | null>(null);
+
 
   useEffect(() => {
     if (!open) return;
@@ -304,7 +306,10 @@ export default function Header() {
                     className="absolute right-0 mt-2 w-44 rounded-lg bg-white border border-gray-200 p-2 shadow-lg z-50"
                   >
                     <a role="menuitem" href="#" className="block px-3 py-2 rounded-md text-sm text-black hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">Profile</a>
-                    <a role="menuitem" href="#" className="block px-3 py-2 rounded-md text-sm text-black hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">Settings</a>
+                    <div className='@apply flex justify-between px-3 py-2;'>
+                    <p className="@apply r-auto block px-1 py-1 rounded-md text-sm text-black focus-visible:ring-2 focus-visible:ring-indigo-400">Dark mode</p>
+                    <Switch />
+                    </div>
                     <a role="menuitem" href="#" className="block px-3 py-2 rounded-md text-sm text-black hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">Sign out</a>
                   </div>
                 )}
