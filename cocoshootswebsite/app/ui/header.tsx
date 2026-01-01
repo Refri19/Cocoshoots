@@ -35,7 +35,7 @@ function InlineSwitch() {
   );
 }
 
-export default function Header() {
+export default function Header({ session }: { session: any }) {
 
   const [open, setOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function Header() {
   const [AboutusDropdownOpen, setAboutusDropdownOpen] = useState(false);
   const [MoreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [name, setName] = useState('Guest');
+  const [name, setName] = useState('username');
   // Dark mode state
   const [darkMode, setDarkMode] = useState();
   const mobileRef = useRef<HTMLDivElement | null>(null);
@@ -136,7 +136,7 @@ export default function Header() {
             {MoreDropdownOpen && (
               <div className={dropdownClass}>
                 <DropdownLink href="/Blog" label="Studio Blog" desc="Latest updates" />
-                <DropdownLink href="/PostPhoto" label="Post Content" desc="Share your work" />
+                <DropdownLink href="/Share" label="Share our story" desc="Help us spread the word" />
                 <DropdownLink href="/Venue" label="Venues" desc="Schedule now for your event" />
               </div>
             )}
@@ -160,7 +160,8 @@ export default function Header() {
             {userOpen && (
               <div className={`${dropdownClass} right-0 left-auto origin-top-right w-64`}>
                 <div className="px-4 py-3 border-b border-gray-50 mb-2">
-                  <p className="text-sm font-black text-[#253939]">Guest</p>
+                  <p className="text-sm font-black text-[#253939]">{session?.user?.name&&
+                    <p>{session?.user?.name}</p>}</p>
                 </div>
       <DropdownLink href="/Profile" label="Your Profile" desc="Edit your personal information in this website" />
       <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded-xl my-2">
@@ -275,3 +276,4 @@ function MobileLink({ href, label, variant = 'default' }: { href: string, label:
     </a>
   );
 }
+
