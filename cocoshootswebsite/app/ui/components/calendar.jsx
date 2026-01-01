@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import './calendar.css';
+import './styles/calendar.css';
 // Ensure you have necessary CSS for the classes (calendar-container, headercalendar, today, day-number, fade-in/fade-out)
 // For simplicity, the CSS is omitted here.
 
@@ -22,8 +22,9 @@ const getDaysInMonth = (month, year) => {
 /**
  * Renders a full calendar component using React's state and rendering capabilities.
  */
-export default function Calendar() {
+export default function Calendar({ onSelect }) {
     // 1. STATE MANAGEMENT: Track the displayed month/year and the selected date
+
     const [currentDate, setCurrentDate] = useState(TODAY); // Used to determine month/year to display
     const [selectedDate, setSelectedDate] = useState(null); // Used to track user selection
     const [fadeState, setFadeState] = useState('fade-in'); // Used for the transition effect
@@ -100,6 +101,7 @@ export default function Calendar() {
                     // Click handler
                     const handleDayClick = () => {
                         setSelectedDate(fullDate);
+                        if (onSelect) onSelect(fullDate);
                         console.log(`You clicked on ${MONTHS[currentMonth]} ${dayNumber}, ${currentYear}`);
                     };
 

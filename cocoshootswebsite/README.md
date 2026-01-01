@@ -1,1 +1,1 @@
-
+this is my first website that is going in github. It weeas unfortunate since I made this app in the worst timing possible since the release of CVE-2025-55183 and I was lucky enough to not publish it right after. 

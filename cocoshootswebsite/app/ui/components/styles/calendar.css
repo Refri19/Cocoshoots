@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+.calendar-container {
+  @apply max-w-[400px] border shadow-[0_4px_12px_rgba(0,0,0,0.1)] bg-white overflow-hidden mx-auto my-[30px] rounded-lg border-solid border-[#ddd];
+  font-family: Arial, sans-serif; /* Ensures box-shadow is contained */
+}
+
+/* --- Calendar Header --- */
+.headercalendar {
+  @apply flex justify-between items-center bg-[#FEF6E9] text-[#253939] p-[15px] border-b-[#FEF6E9] border-b border-solid; /* Primary color */
+}
+#monthYear {
+  @apply text-[1.25em] font-semibold m-0;
+}
+
+/* --- Navigation Buttons --- */
+.headercalendar button {
+  @apply text-[#253939] text-[1.1em] cursor-pointer rounded transition-[background-color] duration-[0.2s] px-2.5 py-[5px] border-[none] hover:bg-[rgba(255,255,255,0.1)] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.3)];
+  background: none;
+}
+.headercalendar button:focus {
+  outline: none;
+}
+
+/* --- Calendar Grid (Table) --- */
+#calendar {
+  @apply w-full table-fixed border-collapse; /* Ensures even column width */
+}
+#calendar th,
+#calendar td {
+  @apply text-center px-0 py-[5px];
+}
+#calendar th {
+  @apply bg-neutral-100 text-[#333] text-[0.85em] uppercase font-medium px-0 py-2.5 border-b-[#eee] border-b border-solid;
+}
+
+/* --- Day Number Styling --- */
+.day-number {
+  @apply inline-flex justify-center items-center w-[35px] h-[35px] cursor-pointer text-[1em] text-[#333] rounded-[50%];
+  transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+#calendar td:hover .day-number {
+  @apply bg-[#e0e0e0];
+}
+
+/* --- Special Date Styles --- */
+
+/* Today's Date */
+.day-number.today {
+  @apply bg-[#FEF6E9] text-[#333] font-[bold];
+}
+
+/* Selected Date */
+.day-number.selected {
+  @apply bg-[#D2532B] text-[white] font-[bold] shadow-[0_2px_5px_rgba(0,0,0,0.2)] scale-105;
+}
+
+/* --- State Transition (Fade Effect) --- */
+/* This implements the fade-in/fade-out logic used in the component's state */
+#calendar-body {
+  @apply transition-opacity duration-[0.2s] ease-[ease-in-out];
+}
+.fade-out {
+  @apply opacity-0;
+}
+.fade-in {
+  @apply opacity-100;
+}
+
+/* --- Selected Date Display --- */
+#clicked-date-display {
+  @apply bg-[#f9f9f9] p-2.5 border-t-[#eee] border-t border-solid;
+}

@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+.card {
+  @apply shadow-[0_4px_8px_0_rgba(0,0,0,0.2)] transition-[0.3s] max-w-[300px] m-5 rounded-[5px] hover:shadow-[0_8px_16px_0_rgba(0,0,0,0.2)];
+  font-family: sans-serif;
+}
+.card-image {
+  @apply w-full h-auto rounded-[5px_5px_0_0];
+}
+.card-content {
+  @apply p-4;
+}
+.card-title {
+  @apply text-2xl mb-2.5;
+}
+.card-description {
+  @apply text-[#666] mb-[15px];
+}
+.card-price {
+  @apply font-[bold] text-[#007bff] mb-[15px];
+}
+.card-button {
+  @apply bg-[#007bff] text-[white] text-center no-underline inline-block rounded px-[15px] py-2.5;
+}
+.loading,
+.error {
+  @apply text-center border p-5 border-solid border-[#ddd];
+}
+.error {
+  @apply text-[red];
+}
