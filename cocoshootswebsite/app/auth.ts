@@ -1,8 +1,14 @@
-import NextAuth from "next-auth"
-import {MongoDBAdapter} from "@next-auth/mongodb-adapter"
-import clientPromise from "@/lib/database"
+import NextAuth from "next-auth";
+import FacebookProvider from "next-auth/providers/facebook"
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [],
-  adapter: MongoDBAdapter(clientPromise),
-})
+export const {handlers,signIn,signOut,auth}= NextAuth({
+    providers: [
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID as string,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+        }),
+    ],  
+    pages:{
+        signIn:'/login',
+    }
+    })

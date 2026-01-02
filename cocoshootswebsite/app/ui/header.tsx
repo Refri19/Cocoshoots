@@ -5,6 +5,8 @@ import { useTheme } from 'next-themes';
 import MenuBarIcon from './components/menuicon';
 import Facebookicon from './components/facebook-icon';
 import { handleLogoutAction } from '@/app/actions';
+import { useSession, signIn, signOut } from 'next-auth/react';
+
 /**
  * FIXED: Inline Menu Icon
  */
@@ -35,33 +37,23 @@ function InlineSwitch() {
   );
 }
 
-export default function Header({ session }: { session: any }) {
-
+export default function Header() {
+  const { data: session } = useSession(); 
   const [open, setOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const [navDropdownOpen, setNavDropdownOpen] = useState(false);
   const [AboutusDropdownOpen, setAboutusDropdownOpen] = useState(false);
   const [MoreDropdownOpen, setMoreDropdownOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [name, setName] = useState('username');
-  // Dark mode state
-  const [darkMode, setDarkMode] = useState();
+  
   const mobileRef = useRef<HTMLDivElement | null>(null);
   const userRef = useRef<HTMLDivElement | null>(null);
   const navDropdownRef = useRef<HTMLDivElement | null>(null);
   const AboutusDropdownRef = useRef<HTMLDivElement | null>(null);
   const MoreDropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const btnBase = "transition-all duration-200 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D2532B] rounded-lg px-3 py-2";
-  const navItemClass = `${btnBase} hover:bg-[#D2532B] hover:text-[#fef6e9] font-bold text-sm flex items-center gap-1`;
+  const navItemClass = `transition-all duration-200 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D2532B] rounded-lg px-3 py-2 hover:bg-[#D2532B] hover:text-[#fef6e9] font-bold text-sm flex items-center gap-1`;
   const dropdownClass = "absolute left-0 mt-2 w-52 rounded-2xl bg-white border border-gray-100 p-2 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-200 origin-top-left";
 
-  
-
-
-  // Handle Dark Mode Toggle on the HTML element
-  
-  // Click outside handlers
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       const target = e.target as Node;
@@ -78,17 +70,12 @@ export default function Header({ session }: { session: any }) {
     <header className="w-full bg-[#fef6e9] text-[#253939] sticky top-0 z-50 border-b border-black/5 backdrop-blur-md bg-opacity-95">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
-        {/* LOGO SECTION - WIDENED */}
         <div className="flex items-center">
           <a href="/" className="transition-all active:scale-95 duration-200 flex items-center">
             <img 
               src="cocoshoots-logo.png" 
               alt="Cocoshoots Logo" 
-              className="h-12 w-auto max-w-[180px] object-contain" // Height increased from 10 to 12
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-2xl font-black tracking-tighter text-[#253939]">COCOSHOOTS</span>');
-              }}
+              className="h-12 w-auto max-w-[180px] object-contain"
             />
           </a>
         </div>
@@ -146,43 +133,70 @@ export default function Header({ session }: { session: any }) {
         {/* USER ACTIONS */}
         <div className="flex items-center gap-3">
           <button className="hidden sm:flex items-center gap-2 bg-[#253939] text-white px-5 py-2.5 rounded-xl text-sm font-black hover:bg-[#D2532B] transition-all active:scale-95 shadow-lg shadow-[#253939]/10">
-          <Facebookicon />
+            <Facebookicon />
             Post Photo
           </button>
 
+          {/* USER PROFILE SECTION */}
           <div ref={userRef} className="relative">
             <button
               onClick={() => setUserOpen(!userOpen)}
               className="w-10 h-10 rounded-full bg-[#253939] text-[#fef6e9] flex items-center justify-center font-black text-xs shadow-lg hover:shadow-xl transition-all active:scale-90 border-2 border-white overflow-hidden"
             >
-              JS
+              {session?.user?.image ? (
+                <img 
+                  src={session.user.image} 
+                  alt={session.user.name || "User"} 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                session?.user?.name ? session.user.name.substring(0, 2).toUpperCase() : "JS"
+              )}
             </button>
+
             {userOpen && (
               <div className={`${dropdownClass} right-0 left-auto origin-top-right w-64`}>
                 <div className="px-4 py-3 border-b border-gray-50 mb-2">
-                  <p className="text-sm font-black text-[#253939]">{session?.user?.name&&
-                    <p>{session?.user?.name}</p>}</p>
+                  <p className="text-sm font-black text-[#253939]">
+                    {session?.user?.name || "Guest"}
+                  </p>
+                  {session?.user?.email && (
+                    <p className="text-[10px] text-gray-400">{session.user.email}</p>
+                  )}
                 </div>
-      <DropdownLink href="/Profile" label="Your Profile" desc="Edit your personal information in this website" />
-      <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded-xl my-2">
-        <div className="flex flex-col">
-          <span className="text-sm font-bold">Dark mode</span>
-          <span className="text-[10px] text-gray-400">Night visibility</span>
-        </div>
-      <InlineSwitch />
-      </div>
-      <button
-        onClick={handleLogoutAction}
-        className="group flex flex-col w-full px-4 py-3 rounded-xl transition-all active:scale-95 mb-1 text-[#253939] hover:bg-[#D2532B] hover:text-white"
-      >
-        <span className="text-sm font-black text-left">Logout</span>
-        <span className="text-[10px] text-gray-400 group-hover:text-white/70 text-left">Sign out of your account</span>
-      </button>
+
+                <DropdownLink href="/Profile" label="Your Profile" desc="Edit your personal information" />
+                
+                <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded-xl my-2">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-bold">Dark mode</span>
+                    <span className="text-[10px] text-gray-400">Night visibility</span>
+                  </div>
+                  <InlineSwitch />
+                </div>
+
+                {!session ? (
+                  <button
+                    onClick={() => signIn()}
+                    className="group flex flex-col w-full px-4 py-3 rounded-xl transition-all active:scale-95 mb-1 text-[#253939] hover:bg-[#D2532B] hover:text-white"
+                  >
+                    <span className="text-sm font-black text-left">Sign in</span>
+                    <span className="text-[10px] text-gray-400 group-hover:text-white/70 text-left">Log in to your account</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleLogoutAction()}
+                    className="group flex flex-col w-full px-4 py-3 rounded-xl transition-all active:scale-95 mb-1 text-[#253939] hover:bg-[#D2532B] hover:text-white"
+                  >
+                    <span className="text-sm font-black text-left">Logout</span>
+                    <span className="text-[10px] text-gray-400 group-hover:text-white/70 text-left">Sign out of your account</span>
+                  </button>
+                )}
               </div>
             )}
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* MOBILE MENU TRIGGER (Always visible on mobile) */}
           <button
             onClick={() => setOpen(!open)}
             className="lg:hidden p-2.5 rounded-xl bg-gray-100 text-[#253939] hover:bg-gray-200 transition-all active:scale-90"
@@ -192,15 +206,13 @@ export default function Header({ session }: { session: any }) {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU (Moved outside the desktop container) */}
       {open && (
         <div className="lg:hidden fixed inset-0 z-[60]">
-          {/* Overlay */}
           <div 
             className="absolute inset-0 bg-[#253939]/40 backdrop-blur-sm animate-in fade-in duration-300" 
             onClick={() => setOpen(false)} 
           />
-          
           <div
             ref={mobileRef}
             className="relative w-full bg-white rounded-b-[2rem] p-6 shadow-2xl animate-in slide-in-from-top-full duration-500 ease-out"
@@ -211,10 +223,12 @@ export default function Header({ session }: { session: any }) {
                 onClick={() => setOpen(false)} 
                 className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-all active:scale-90"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
               </button>
             </div>
-            
             <nav className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-4">
               <MobileLink href="/Feedback" label="Studio Feedback" />
               <MobileLink href="/Tip" label="Leave a Tip" />
@@ -224,11 +238,11 @@ export default function Header({ session }: { session: any }) {
               <MobileLink href="/Blog" label="Studio Blog" />
               <div className="sm:col-span-2 h-px bg-gray-100 my-2" />
               <button
-    onClick={() => handleLogoutAction()}
-    className="w-full text-left px-5 py-4 rounded-2xl text-base font-black transition-all active:scale-95 text-red-500 bg-red-50 hover:bg-red-100"
-  >
-    Sign Out
-  </button>
+                onClick={() => handleLogoutAction()}
+                className="w-full text-left px-5 py-4 rounded-2xl text-base font-black transition-all active:scale-95 text-red-500 bg-red-50 hover:bg-red-100"
+              >
+                Sign Out
+              </button>
             </nav>
           </div>
         </div>
@@ -262,7 +276,6 @@ function DropdownLink({ href, label, desc, variant = 'default' }: { href: string
 }
 
 function MobileLink({ href, label, variant = 'default' }: { href: string, label: string, variant?: 'default' | 'danger' }) {
-  
   return (
     <a
       href={href}
@@ -276,4 +289,3 @@ function MobileLink({ href, label, variant = 'default' }: { href: string, label:
     </a>
   );
 }
-
