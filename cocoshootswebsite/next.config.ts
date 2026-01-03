@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+    reactStrictMode: true,
+    env: {
+        AUTH_SECRET: process.env.AUTH_SECRET,
+        MONGODB_URI: process.env.MONGODB_URI,
+        FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
+        FACEBOOK_CLIENT_SECRET: process.env.FACEBOOK_CLIENT_SECRET,
+
+    }
 
 
 };
-
+module.exports = nextConfig;
 export default nextConfig;

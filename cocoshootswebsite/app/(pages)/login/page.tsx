@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -22,7 +22,7 @@ export default function LoginPage() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Set cookie
-      document.cookie = "session=true; path=/; max-age=86400"; 
+      //document.cookie = "session=true; path=/; max-age=86400"; 
       
       // Redirect
       router.push('/');
@@ -44,7 +44,7 @@ export default function LoginPage() {
   const handleFacebookLogin = async () => {
     setIsFBLoading(true);
     // NOTE: In a real app, this is where you call: signIn('facebook')
-    await signIn("facebook", { callbackUrl: '/' });
+    await signIn("facebook", );
   };
 
   return (
@@ -135,3 +135,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+

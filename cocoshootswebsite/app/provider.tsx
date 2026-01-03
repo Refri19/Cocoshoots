@@ -1,4 +1,4 @@
-'use client'; // Ensure this is at the top
+'use client';
 
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
@@ -16,11 +16,6 @@ export function themeProvider({ children }: { children: React.ReactNode }) {
 
   );
 }
-export function sessionProvider({children}:{children:React.ReactNode})
-{
-  return(
-    <SessionProvider>
-      {children}
-    </SessionProvider>
-  );
+export function AuthProvider({ children, session }: any) {
+  return <SessionProvider session={session}>{children}</SessionProvider>;
 }

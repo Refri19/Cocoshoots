@@ -11,8 +11,7 @@ if (!MONGODB_URI) {
 }
 const authOptions: MongoClientOptions = {
   serverApi: { version: '1' },
-  strict: true,
-  useNewUrlParser: true, // Add any additional options here
+  
 };
 // Global interface to prevent multiple connections in development
 interface MongooseCache {
