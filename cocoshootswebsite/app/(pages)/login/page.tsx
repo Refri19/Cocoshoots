@@ -3,28 +3,21 @@
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react'; // Removed unused imports
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  // Separate loading states so we know which button was clicked
   const [isLoading, setIsLoading] = useState(false);
   const [isFBLoading, setIsFBLoading] = useState(false);
   
   const router = useRouter();
 
-  // 1. Shared Login Logic (Simulation)
+  // 1. Shared Login Logic (Simulation for standard login)
   const handleLoginSuccess = async () => {
     try {
-      // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Set cookie
-      //document.cookie = "session=true; path=/; max-age=86400"; 
-      
-      // Redirect
       router.push('/');
       router.refresh();
     } catch (error) {
@@ -40,16 +33,17 @@ export default function LoginPage() {
     setIsLoading(false);
   };
 
-  // 3. Handle Facebook Login
+  // 3. Handle Facebook Login (UPDATED)
   const handleFacebookLogin = async () => {
     setIsFBLoading(true);
-    // NOTE: In a real app, this is where you call: signIn('facebook')
-    await signIn("facebook", );
+    // Trigger NextAuth flow and redirect to home ('/') on success
+    await signIn("facebook", { callbackUrl: "/" });
   };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-transparent px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-white p-10 shadow-xl rounded-xl">
+      {/* ... The rest of your JSX remains exactly the same ... */}
+       <div className="w-full max-w-md space-y-8 bg-white p-10 shadow-xl rounded-xl">
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">Welcome</h2>
           <p className="mt-2 text-sm text-gray-600">Please sign in to your account</p>
@@ -135,5 +129,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-
