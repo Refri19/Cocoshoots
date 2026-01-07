@@ -1,51 +1,32 @@
+// app/api/facebook/route.ts
 import { NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
 
 export async function GET() {
-  let browser;
+  const PAGE_ID = '61580797117569';
+  const ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
+  
+  // We request fields: full_picture (the image), message (the text), and created_time
+  const url = `https://graph.facebook.com/v21.0/${PAGE_ID}/posts?fields=full_picture,message,created_time&limit=6&access_token=${ACCESS_TOKEN}`;
+
   try {
-    // 1. Launch with flags to help bypass basic detection
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-blink-features=AutomationControlled'],
-    });
+    const response = await fetch(url);
+    const data = await response.json();
 
-    const page = await browser.newPage();
-
-    // 2. Pretend to be a real Chrome browser
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36');
-    await page.setViewport({ width: 1280, height: 800 });
-
-    const targetUrl = "https://www.facebook.com/profile.php?id=61580797117569";
-    
-    // 3. Go to page and wait for images to actually load
-    await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 60000 });
-
-    // 4. Robust Image Extraction Logic
-    const imageUrl = await page.evaluate(() => {
-      // Facebook usually puts post images in these role/aria attributes
-      const postImages = Array.from(document.querySelectorAll('img'))
-        .filter(img => {
-          const src = img.src || "";
-          // Filter for 'scontent' (FB CDN) and ignore small icons/profile pics
-          return src.includes('scontent') && img.width > 300;
-        })
-        .map(img => img.src);
-
-      return postImages[0] || null; // Return the first large post image found
-    });
-
-    await browser.close();
-
-    if (!imageUrl) {
-      return NextResponse.json({ error: "No post image found" }, { status: 404 });
+    if (data.error) {
+      return NextResponse.json({ error: data.error.message }, { status: 400 });
     }
 
-    return NextResponse.json({ imageUrl });
+    // Map Facebook data to your Photo interface format
+    const formattedPosts = data.data.map((post: any) => ({
+      id: post.id,
+      title: post.message ? post.message.substring(0, 20) + "..." : "Facebook Post",
+      color: "bg-blue-500", // Default brand color
+      caption: post.message || "",
+      url: post.full_picture // The high-res image URL
+    }));
 
-  } catch (error: any) {
-    if (browser) await browser.close();
-    console.error("Scraper Error:", error.message);
-    return NextResponse.json({ error: "Failed to scrape Facebook", details: error.message }, { status: 500 });
+    return NextResponse.json(formattedPosts);
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch FB posts" }, { status: 500 });
   }
 }

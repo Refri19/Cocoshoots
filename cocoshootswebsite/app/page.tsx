@@ -95,29 +95,35 @@ const MainPageContent = ({ username }: { username: string }) => {
   ]);
 
   // FIXED: Moved the Facebook useEffect INSIDE the component where setPhotos is available
-  useEffect(() => {
-    const fetchFacebookImage = async () => {
-      try {
-        const res = await fetch('/api/facebook');
-        const data = await res.json();
+// Inside MainPageContent component in page.tsx
+useEffect(() => {
+  const fetchFacebookPosts = async () => {
+    try {
+      const res = await fetch('/api/facebook');
+      const data = await res.json();
 
-        if (data.imageUrl) {
-          const fbPhoto: Photo = {
-            id: Date.now(),
-            title: "Latest FB Post",
-            color: "bg-blue-500",
-            caption: "",
-            url: data.imageUrl 
-          };
-          setPhotos(prev => [fbPhoto, ...prev]);
-        }
-      } catch (err) {
-        console.error("FB Fetch failed", err);
+      // Check if the data is an array (our new format)
+      if (Array.isArray(data)) {
+        setPhotos(prev => {
+          // Filter out the initial dummy photos if you want, 
+          // or just prepend the new ones
+          const fbPhotos: Photo[] = data.map(post => ({
+            id: post.id,
+            title: post.title,
+            color: post.color,
+            caption: post.caption,
+            url: post.url 
+          }));
+          return [...fbPhotos, ...prev];
+        });
       }
-    };
+    } catch (err) {
+      console.error("FB Fetch failed", err);
+    }
+  };
 
-    fetchFacebookImage();
-  }, []);
+  fetchFacebookPosts();
+}, []);
 
   const saveGalleryToDB = async () => {
     try {

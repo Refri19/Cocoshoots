@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
         FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
         FACEBOOK_CLIENT_SECRET: process.env.FACEBOOK_CLIENT_SECRET,
 
-    }
+    },
+    images: {
+        domains: ['scontent.fsgn5-10.fna.fbcdn.net'],
+    },
 
 
 };
