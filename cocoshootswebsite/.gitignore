@@ -44,3 +44,11 @@ next-env.d.ts
 
 #copilot
 .github
+/app/generated/prisma
+
+#database
+/prisma/app.db
+
+#test page
+/app/(pages)/1test
+/app/generated/prisma

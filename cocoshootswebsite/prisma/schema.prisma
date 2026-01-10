@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+model blog {
+  id        Int    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  title     String
+  excerpt   String
+  date      String
+  createdAt String
+}
+model feedback {
+  id        Int    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name      String
+  category  String
+  message   String
+  createdAt String
+}
+model login {
+  id       Int    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  username String
+  password String
+}
+model photo {
+  id       Int    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name     String
+  filename String
+  img      Bytes
+}
+model venue {
+  id          Int    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name        String
+  email       String
+  phonenumber String
+  location    String
+  scheduledat String
+}

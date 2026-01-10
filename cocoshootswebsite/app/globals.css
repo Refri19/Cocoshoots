@@ -42,3 +42,15 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
  
+.blog-card-expanded {
+  --blog-bg: #000000;
+  --blog-text: #FFFFFF;
+  --blog-border: rgba(255, 255, 255, 0.2);
+}
+
+.blog-card-transition {
+  background-color: var(--blog-bg);
+  color: var(--blog-text);
+  border-color: var(--blog-border);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

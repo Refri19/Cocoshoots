@@ -1,28 +1,31 @@
 "use client";
-import React, { use } from 'react';
+import React from 'react';
+import BlogCard from '@/app/ui/components/blogcard'; // Adjust the path as needed
 
-// Mock data for your posts
 const posts = [
   {
     id: 1,
-    title: "Something",
-    excerpt: "Something Something",
+    title: "The Future of Tailwind",
+    excerpt: "Exploring what's new in version 4.0 and how it changes styling.",
     date: "Dec 23, 2025",
-    category: "Blog"
+    category: "Design"
+    ,morecontent: ""
   },
   {
     id: 2,
-    title: "Something",
-    excerpt: "Something Something.",
-    date: "Dec 23, 2025",
-    category: "Blog"
+    title: "Minimalist Workflows",
+    excerpt: "How to stay productive by doing less but focusing more.",
+    date: "Dec 24, 2025",
+    category: "Studio"
+    ,morecontent: ""
   },
   {
     id: 3,
-    title: "Something",
-    excerpt: "Something Something",
-    date: "Dec 23, 2025",
-    category: "Blog"
+    title: "Brand Consistency",
+    excerpt: "Maintaining your orange accent across different color modes.",
+    date: "Dec 25, 2025",
+    category: "Strategy"
+    ,morecontent: ""
   }
 ];
 
@@ -33,22 +36,10 @@ export default function BlogPage() {
         <h1 className="text-4xl font-bold mb-4">Our Journal</h1>
         <p className="text-lg text-gray-600">Thoughts, stories, and about the stories about this studio.</p>
       </div>
+
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <article key={post.id} className="flexflex-col border rounded-lg p-6 hover:shadow-lg transition-shadow bg-white">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#D2532B] mb-2">
-              {post.category}
-            </span>
-            <h2 className="text-xl font-bold mb-3 text-gray-800 hover:text-[#D2532B] cursor-pointer">
-              {post.title}
-            </h2>
-            <p className="text-gray-600 mb-4 flex-grow">
-              {post.excerpt}
-            </p>
-            <div className="text-sm text-gray-400">
-              {post.date}
-            </div>
-          </article>
+          <BlogCard key={post.id} post={post} />
         ))}
       </div>
     </div>

@@ -5,7 +5,8 @@ import { useTheme } from 'next-themes';
 import MenuBarIcon from './components/menuicon';
 import Facebookicon from './components/facebook-icon';
 import { handleLogoutAction } from '@/app/actions';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
+import Link from "next/link";
 
 /**
  * FIXED: Inline Menu Icon
@@ -71,13 +72,13 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         <div className="flex items-center">
-          <a href="/" className="transition-all active:scale-95 duration-200 flex items-center">
-            <img 
+          <Link href="/" className="transition-all active:scale-95 duration-200 flex items-center">
+            <img
               src="cocoshoots-logo.png" 
               alt="Cocoshoots Logo" 
-              className="h-12 w-auto max-w-[180px] object-contain"
+              className="h-12 w-auto max-w-45 object-contain"
             />
-          </a>
+          </Link>
         </div>
 
         {/* DESKTOP NAV */}
@@ -144,7 +145,7 @@ export default function Header() {
               className="w-10 h-10 rounded-full bg-[#253939] text-[#fef6e9] flex items-center justify-center font-black text-xs shadow-lg hover:shadow-xl transition-all active:scale-90 border-2 border-white overflow-hidden"
             >
               {session?.user?.image ? (
-                <img 
+                <img
                   src={session.user.image} 
                   alt={session.user.name || "User"} 
                   className="w-full h-full object-cover"
@@ -215,7 +216,7 @@ export default function Header() {
           />
           <div
             ref={mobileRef}
-            className="relative w-full bg-white rounded-b-[2rem] p-6 shadow-2xl animate-in slide-in-from-top-full duration-500 ease-out"
+            className="relative w-full bg-white rounded-b-4xl p-6 shadow-2xl animate-in slide-in-from-top-full duration-500 ease-out"
           >
             <div className="flex items-center justify-between mb-6">
               <span className="text-xl font-black text-[#253939]">Navigation</span>

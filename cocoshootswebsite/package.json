@@ -10,15 +10,14 @@
   },
   "dependencies": {
     "lucide-react": "^0.561.0",
-    "mongodb": "^7.0.0",
-    "mongoose": "^9.0.2",
     "next": "16.1.1-canary.10",
     "next-auth": "^4.24.13",
     "next-themes": "^0.4.6",
     "puppeteer": "^24.34.0",
     "puppeteer-core": "^24.34.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -27,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "prisma": "^7.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
   }
