@@ -1,14 +1,8 @@
 // lib/prisma.ts
-import 'dotenv/config'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
-import { PrismaClient } from '../generated/prisma/client' // Adjust based on your 'output' path
+import { PrismaClient } from "@/src/generated/prisma/client";
+import {PrismaBetterSqlite3} from "@prisma/adapter-better-sqlite3";
 
-const connectionString = process.env.DATABASE_URL || 'file:./prisma/dev.db'
-const adapter = new PrismaBetterSqlite3({ url: connectionString })
-
-// Prevents multiple instances of Prisma Client in development (e.g., Hot Reloading)
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined }
-
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter })
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+const adapter = new PrismaBetterSqlite3({
+    url:process.env.DATABASE_URL || 'file:./dev.db'
+})
+export const prisma = new PrismaClient({adapter})

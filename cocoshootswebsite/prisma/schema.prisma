@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client" // Note: "prisma-client" is the new v7 provider
-  output   = "../generated/prisma" // Specify a custom output path
+  output   = "../src/generated/prisma" // Specify a custom output path
 }
 
 datasource db {

@@ -1,8 +1,16 @@
+
 import React from "react";
+import {prisma} from '@/lib/prisma'
 
 
-const Admin = () => {
-    return <div>Admin Page</div>;
-};
+export default async function AdminPage() {
+    const login = await prisma.login.findMany({});
 
-export default Admin;
+    return (
+        <ul>
+            {login.map(user => (
+                <li key={user.id}>{user.username}</li>
+            ))}
+        </ul>
+    )
+}

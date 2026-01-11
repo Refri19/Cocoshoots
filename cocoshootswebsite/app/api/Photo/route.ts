@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/database';
+import connectDB from '@/lib/prisma';
 import Gallery from '@/models/Photo';
 
 export async function POST(req: Request) {

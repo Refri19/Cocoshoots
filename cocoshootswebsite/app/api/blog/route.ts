@@ -1,17 +1,13 @@
-import dbConnect from '@/lib/database';
-import { NextResponse } from 'next/server';
-import Blog from '@/models/blog';
+// app/api/posts/route.ts
+import { NextResponse } from 'next/server'
+import {prisma} from '@/lib/prisma' // Assumes you have the singleton from the previous step
 
 export async function GET() {
-    try {  
-        await dbConnect();
-        const blogs = await Blog.find().sort({ createdAt: -1 });
-        return NextResponse.json({ data: blogs }, { status: 200 });
+    try {
+        const posts = await prisma.blog.findMany({
+        })
+        return NextResponse.json(posts)
     } catch (error) {
-        console.error('Database Error:', error);
-        return NextResponse.json(
-            { error: 'Internal Server Error' }, 
-            { status: 500 }
-        );
+        return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 })
     }
 }
