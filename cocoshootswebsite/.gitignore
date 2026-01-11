@@ -52,3 +52,5 @@ next-env.d.ts
 #test page
 /app/(pages)/1test
 /app/generated/prisma
+
+/app/generated/prisma

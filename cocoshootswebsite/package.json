@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.2.0",
+    "@prisma/config": "^7.2.0",
     "lucide-react": "^0.561.0",
     "next": "16.1.1-canary.10",
     "next-auth": "^4.24.13",
@@ -20,6 +22,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@prisma/client": "^7.2.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -29,5 +32,11 @@
     "prisma": "^7.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
-  }
+  },
+  "description": "this is my first website that is going in github. It weeas unfortunate since I made this app in the worst timing possible since the release of CVE-2025-55183 and I was lucky enough to not publish it right after.",
+  "main": "tailwind.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
