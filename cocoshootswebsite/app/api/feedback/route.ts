@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/database';
-import Feedback from '@/models/blog';
+
 
 export async function POST(request: Request) {
   try {

@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\" // Note: \"prisma-client\" is the new v7 provider\n  output   = \"../src/generated/prisma\" // Specify a custom output path\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel blog {\n  id        Int    @id @default(autoincrement())\n  title     String\n  excerpt   String\n  date      String\n  createdAt String\n}\n\nmodel feedback {\n  id        Int    @id @default(autoincrement())\n  name      String\n  category  String\n  message   String\n  createdAt String\n}\n\nmodel login {\n  id       Int    @id @default(autoincrement())\n  username String\n  password String\n}\n\nmodel photo {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  filename String?\n  img      Bytes?\n}\n\nmodel venue {\n  id          Int    @id @default(autoincrement())\n  name        String\n  email       String @unique\n  phonenumber String\n  location    String\n  scheduledat String\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\" // Note: \"prisma-client\" is the new v7 provider\n  output   = \"../src/generated/prisma\" // Specify a custom output path\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel blog {\n  id        Int    @id @default(autoincrement())\n  title     String\n  excerpt   String\n  date      String\n  createdAt String\n}\n\nmodel feedback {\n  id        Int    @id @default(autoincrement())\n  name      String\n  category  String\n  message   String\n  createdAt String\n}\n\nmodel user {\n  id        Int      @id @default(autoincrement())\n  email     String   @unique\n  username  String\n  password  String\n  createdAt DateTime @default(now())\n}\n\nmodel photo {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  filename String?\n  img      Bytes?\n}\n\nmodel venue {\n  id          Int    @id @default(autoincrement())\n  name        String\n  email       String @unique\n  phonenumber String\n  location    String\n  scheduledat String\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"blog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"excerpt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"feedback\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"login\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"photo\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"filename\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"img\",\"kind\":\"scalar\",\"type\":\"Bytes\"}],\"dbName\":null},\"venue\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phonenumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scheduledat\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"blog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"excerpt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"feedback\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"user\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"photo\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"filename\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"img\",\"kind\":\"scalar\",\"type\":\"Bytes\"}],\"dbName\":null},\"venue\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phonenumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"scheduledat\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -195,14 +195,14 @@ export interface PrismaClient<
   get feedback(): Prisma.feedbackDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.login`: Exposes CRUD operations for the **login** model.
+   * `prisma.user`: Exposes CRUD operations for the **user** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Logins
-    * const logins = await prisma.login.findMany()
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
     * ```
     */
-  get login(): Prisma.loginDelegate<ExtArgs, { omit: OmitOpts }>;
+  get user(): Prisma.userDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.photo`: Exposes CRUD operations for the **photo** model.

@@ -1,8 +1,11 @@
 import NextAuth from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
 
+
+
 const handler = NextAuth({
   providers: [
+
     FacebookProvider({
       // These names MUST match your .env.local keys exactly
       clientId: process.env.FACEBOOK_CLIENT_ID as string,

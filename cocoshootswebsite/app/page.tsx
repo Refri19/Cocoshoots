@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Camera, ImageIcon, Download } from 'lucide-react';
 import { useSession, signIn } from 'next-auth/react';
+import Link from "next/link";
 
 // --- Types ---
 interface Photo {
@@ -28,11 +29,10 @@ const WelcomeScreen = ({ onJoin }: { onJoin: () => void }) => {
               <p className="text-gray-500 font-medium">Join our community to start sharing.</p>
             </div>
 
-            <button
-                onClick={() => onJoin()}
-                className="w-full bg-[#253939] text-[#fef6e9] font-bold py-4 px-6 rounded-2xl hover:bg-[#D2532B] active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 text-lg shadow-lg"
-            >
+            <button className="w-full bg-[#253939] text-[#fef6e9] font-bold py-4 px-6 rounded-2xl hover:bg-[#D2532B] active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 text-lg shadow-lg"
+            ><Link href='/login'>
               Sign In to Start <span>→</span>
+            </Link>
             </button>
           </div>
         </div>

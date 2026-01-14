@@ -28,10 +28,10 @@ export type blog = Prisma.blogModel
  */
 export type feedback = Prisma.feedbackModel
 /**
- * Model login
+ * Model user
  * 
  */
-export type login = Prisma.loginModel
+export type user = Prisma.userModel
 /**
  * Model photo
  * 

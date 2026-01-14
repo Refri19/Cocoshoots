@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next-auth/typeorm-legacy-adapter": "0.0.2-canary.218",
     "@prisma/adapter-better-sqlite3": "^7.2.0",
     "@prisma/config": "^7.2.0",
+    "bcryptjs": "^3.0.3",
     "lucide-react": "^0.561.0",
     "next": "16.1.1-canary.10",
     "next-auth": "^4.24.13",
@@ -27,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "prisma": "^7.2.0",
@@ -38,5 +41,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module"
 }

@@ -6,6 +6,7 @@ import MenuBarIcon from '../../ui/components/menuicon';
 import Facebookicon from '../../ui/components/facebook-icon';
 import Link from "next/link";
 import CardComponent from '../../ui/components/blogcard';
+import Googleicon from '@/components/google-icon';
 
 export default function Test() {
     return (
@@ -15,7 +16,7 @@ export default function Test() {
      <Calendar />
      <Nameinput />
         <MenuBarIcon />
-
+<Googleicon />
         <CardComponent />
 
      </div>

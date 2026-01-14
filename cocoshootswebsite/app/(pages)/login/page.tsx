@@ -70,7 +70,7 @@ export default function LoginPage() {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div className="text-sm flex flex-row">
                   <Link href="/forgot-password" size-sm="true" className="font-semibold text-[#253939] hover:text-[#D2532B]">Forgot password?</Link>
-                  <p className="mx-2"> / </p>
+                  <p className="mx-2 text-[#253939]"> / </p>
                   <Link href="/Register" className="font-semibold text-[#253939] hover:text-[#D2532B]">First time?</Link>
                 </div>
               </div>

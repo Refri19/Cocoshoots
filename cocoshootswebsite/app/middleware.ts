@@ -31,5 +31,6 @@ export default withAuth(
 
 export const config = {
   // Protect all routes except static files and specific public paths
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)','.admin/:path*','/login',],
+
 };
