@@ -48,9 +48,6 @@ next-env.d.ts
 
 #database
 /prisma/app.db
-
+dev.db
 #test page
 /app/(pages)/1test
-/app/generated/prisma
-
-/app/generated/prisma
