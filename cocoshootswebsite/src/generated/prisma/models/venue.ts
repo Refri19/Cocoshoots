@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `venue` model and its related types.
+ * This file exports the `Venue` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,43 +13,35 @@ import type * as $Enums from "../enums"
 import type * as Prisma from "../internal/prismaNamespace"
 
 /**
- * Model venue
+ * Model Venue
  * 
  */
-export type venueModel = runtime.Types.Result.DefaultSelection<Prisma.$venuePayload>
+export type VenueModel = runtime.Types.Result.DefaultSelection<Prisma.$VenuePayload>
 
 export type AggregateVenue = {
   _count: VenueCountAggregateOutputType | null
-  _avg: VenueAvgAggregateOutputType | null
-  _sum: VenueSumAggregateOutputType | null
   _min: VenueMinAggregateOutputType | null
   _max: VenueMaxAggregateOutputType | null
 }
 
-export type VenueAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type VenueSumAggregateOutputType = {
-  id: number | null
-}
-
 export type VenueMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   email: string | null
   phonenumber: string | null
-  location: string | null
-  scheduledat: string | null
+  reasoning: string | null
+  scheduleAt: Date | null
+  createdAt: Date | null
 }
 
 export type VenueMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   email: string | null
   phonenumber: string | null
-  location: string | null
-  scheduledat: string | null
+  reasoning: string | null
+  scheduleAt: Date | null
+  createdAt: Date | null
 }
 
 export type VenueCountAggregateOutputType = {
@@ -57,27 +49,21 @@ export type VenueCountAggregateOutputType = {
   name: number
   email: number
   phonenumber: number
-  location: number
-  scheduledat: number
+  reasoning: number
+  scheduleAt: number
+  createdAt: number
   _all: number
 }
 
-
-export type VenueAvgAggregateInputType = {
-  id?: true
-}
-
-export type VenueSumAggregateInputType = {
-  id?: true
-}
 
 export type VenueMinAggregateInputType = {
   id?: true
   name?: true
   email?: true
   phonenumber?: true
-  location?: true
-  scheduledat?: true
+  reasoning?: true
+  scheduleAt?: true
+  createdAt?: true
 }
 
 export type VenueMaxAggregateInputType = {
@@ -85,8 +71,9 @@ export type VenueMaxAggregateInputType = {
   name?: true
   email?: true
   phonenumber?: true
-  location?: true
-  scheduledat?: true
+  reasoning?: true
+  scheduleAt?: true
+  createdAt?: true
 }
 
 export type VenueCountAggregateInputType = {
@@ -94,58 +81,47 @@ export type VenueCountAggregateInputType = {
   name?: true
   email?: true
   phonenumber?: true
-  location?: true
-  scheduledat?: true
+  reasoning?: true
+  scheduleAt?: true
+  createdAt?: true
   _all?: true
 }
 
 export type VenueAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which venue to aggregate.
+   * Filter which Venue to aggregate.
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of venues to fetch.
+   * Determine the order of Venues to fetch.
    */
-  orderBy?: Prisma.venueOrderByWithRelationInput | Prisma.venueOrderByWithRelationInput[]
+  orderBy?: Prisma.VenueOrderByWithRelationInput | Prisma.VenueOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.venueWhereUniqueInput
+  cursor?: Prisma.VenueWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` venues from the position of the cursor.
+   * Take `±n` Venues from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` venues.
+   * Skip the first `n` Venues.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned venues
+   * Count returned Venues
   **/
   _count?: true | VenueCountAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to average
-  **/
-  _avg?: VenueAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: VenueSumAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
@@ -171,35 +147,32 @@ export type GetVenueAggregateType<T extends VenueAggregateArgs> = {
 
 
 
-export type venueGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.venueWhereInput
-  orderBy?: Prisma.venueOrderByWithAggregationInput | Prisma.venueOrderByWithAggregationInput[]
+export type VenueGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VenueWhereInput
+  orderBy?: Prisma.VenueOrderByWithAggregationInput | Prisma.VenueOrderByWithAggregationInput[]
   by: Prisma.VenueScalarFieldEnum[] | Prisma.VenueScalarFieldEnum
-  having?: Prisma.venueScalarWhereWithAggregatesInput
+  having?: Prisma.VenueScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: VenueCountAggregateInputType | true
-  _avg?: VenueAvgAggregateInputType
-  _sum?: VenueSumAggregateInputType
   _min?: VenueMinAggregateInputType
   _max?: VenueMaxAggregateInputType
 }
 
 export type VenueGroupByOutputType = {
-  id: number
+  id: string
   name: string
   email: string
   phonenumber: string
-  location: string
-  scheduledat: string
+  reasoning: string
+  scheduleAt: Date
+  createdAt: Date
   _count: VenueCountAggregateOutputType | null
-  _avg: VenueAvgAggregateOutputType | null
-  _sum: VenueSumAggregateOutputType | null
   _min: VenueMinAggregateOutputType | null
   _max: VenueMaxAggregateOutputType | null
 }
 
-type GetVenueGroupByPayload<T extends venueGroupByArgs> = Prisma.PrismaPromise<
+type GetVenueGroupByPayload<T extends VenueGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<VenueGroupByOutputType, T['by']> &
       {
@@ -214,226 +187,239 @@ type GetVenueGroupByPayload<T extends venueGroupByArgs> = Prisma.PrismaPromise<
 
 
 
-export type venueWhereInput = {
-  AND?: Prisma.venueWhereInput | Prisma.venueWhereInput[]
-  OR?: Prisma.venueWhereInput[]
-  NOT?: Prisma.venueWhereInput | Prisma.venueWhereInput[]
-  id?: Prisma.IntFilter<"venue"> | number
-  name?: Prisma.StringFilter<"venue"> | string
-  email?: Prisma.StringFilter<"venue"> | string
-  phonenumber?: Prisma.StringFilter<"venue"> | string
-  location?: Prisma.StringFilter<"venue"> | string
-  scheduledat?: Prisma.StringFilter<"venue"> | string
+export type VenueWhereInput = {
+  AND?: Prisma.VenueWhereInput | Prisma.VenueWhereInput[]
+  OR?: Prisma.VenueWhereInput[]
+  NOT?: Prisma.VenueWhereInput | Prisma.VenueWhereInput[]
+  id?: Prisma.StringFilter<"Venue"> | string
+  name?: Prisma.StringFilter<"Venue"> | string
+  email?: Prisma.StringFilter<"Venue"> | string
+  phonenumber?: Prisma.StringFilter<"Venue"> | string
+  reasoning?: Prisma.StringFilter<"Venue"> | string
+  scheduleAt?: Prisma.DateTimeFilter<"Venue"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Venue"> | Date | string
 }
 
-export type venueOrderByWithRelationInput = {
+export type VenueOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phonenumber?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  scheduledat?: Prisma.SortOrder
+  reasoning?: Prisma.SortOrder
+  scheduleAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
-export type venueWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
-  email?: string
-  AND?: Prisma.venueWhereInput | Prisma.venueWhereInput[]
-  OR?: Prisma.venueWhereInput[]
-  NOT?: Prisma.venueWhereInput | Prisma.venueWhereInput[]
-  name?: Prisma.StringFilter<"venue"> | string
-  phonenumber?: Prisma.StringFilter<"venue"> | string
-  location?: Prisma.StringFilter<"venue"> | string
-  scheduledat?: Prisma.StringFilter<"venue"> | string
-}, "id" | "email">
+export type VenueWhereUniqueInput = Prisma.AtLeast<{
+  id?: string
+  AND?: Prisma.VenueWhereInput | Prisma.VenueWhereInput[]
+  OR?: Prisma.VenueWhereInput[]
+  NOT?: Prisma.VenueWhereInput | Prisma.VenueWhereInput[]
+  name?: Prisma.StringFilter<"Venue"> | string
+  email?: Prisma.StringFilter<"Venue"> | string
+  phonenumber?: Prisma.StringFilter<"Venue"> | string
+  reasoning?: Prisma.StringFilter<"Venue"> | string
+  scheduleAt?: Prisma.DateTimeFilter<"Venue"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Venue"> | Date | string
+}, "id">
 
-export type venueOrderByWithAggregationInput = {
+export type VenueOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phonenumber?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  scheduledat?: Prisma.SortOrder
-  _count?: Prisma.venueCountOrderByAggregateInput
-  _avg?: Prisma.venueAvgOrderByAggregateInput
-  _max?: Prisma.venueMaxOrderByAggregateInput
-  _min?: Prisma.venueMinOrderByAggregateInput
-  _sum?: Prisma.venueSumOrderByAggregateInput
+  reasoning?: Prisma.SortOrder
+  scheduleAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  _count?: Prisma.VenueCountOrderByAggregateInput
+  _max?: Prisma.VenueMaxOrderByAggregateInput
+  _min?: Prisma.VenueMinOrderByAggregateInput
 }
 
-export type venueScalarWhereWithAggregatesInput = {
-  AND?: Prisma.venueScalarWhereWithAggregatesInput | Prisma.venueScalarWhereWithAggregatesInput[]
-  OR?: Prisma.venueScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.venueScalarWhereWithAggregatesInput | Prisma.venueScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"venue"> | number
-  name?: Prisma.StringWithAggregatesFilter<"venue"> | string
-  email?: Prisma.StringWithAggregatesFilter<"venue"> | string
-  phonenumber?: Prisma.StringWithAggregatesFilter<"venue"> | string
-  location?: Prisma.StringWithAggregatesFilter<"venue"> | string
-  scheduledat?: Prisma.StringWithAggregatesFilter<"venue"> | string
+export type VenueScalarWhereWithAggregatesInput = {
+  AND?: Prisma.VenueScalarWhereWithAggregatesInput | Prisma.VenueScalarWhereWithAggregatesInput[]
+  OR?: Prisma.VenueScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.VenueScalarWhereWithAggregatesInput | Prisma.VenueScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"Venue"> | string
+  name?: Prisma.StringWithAggregatesFilter<"Venue"> | string
+  email?: Prisma.StringWithAggregatesFilter<"Venue"> | string
+  phonenumber?: Prisma.StringWithAggregatesFilter<"Venue"> | string
+  reasoning?: Prisma.StringWithAggregatesFilter<"Venue"> | string
+  scheduleAt?: Prisma.DateTimeWithAggregatesFilter<"Venue"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Venue"> | Date | string
 }
 
-export type venueCreateInput = {
+export type VenueCreateInput = {
+  id?: string
   name: string
   email: string
   phonenumber: string
-  location: string
-  scheduledat: string
+  reasoning: string
+  scheduleAt: Date | string
+  createdAt?: Date | string
 }
 
-export type venueUncheckedCreateInput = {
-  id?: number
+export type VenueUncheckedCreateInput = {
+  id?: string
   name: string
   email: string
   phonenumber: string
-  location: string
-  scheduledat: string
+  reasoning: string
+  scheduleAt: Date | string
+  createdAt?: Date | string
 }
 
-export type venueUpdateInput = {
+export type VenueUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phonenumber?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  scheduledat?: Prisma.StringFieldUpdateOperationsInput | string
+  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type venueUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+export type VenueUncheckedUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phonenumber?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  scheduledat?: Prisma.StringFieldUpdateOperationsInput | string
+  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type venueCreateManyInput = {
-  id?: number
+export type VenueCreateManyInput = {
+  id?: string
   name: string
   email: string
   phonenumber: string
-  location: string
-  scheduledat: string
+  reasoning: string
+  scheduleAt: Date | string
+  createdAt?: Date | string
 }
 
-export type venueUpdateManyMutationInput = {
+export type VenueUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phonenumber?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  scheduledat?: Prisma.StringFieldUpdateOperationsInput | string
+  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type venueUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+export type VenueUncheckedUpdateManyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phonenumber?: Prisma.StringFieldUpdateOperationsInput | string
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  scheduledat?: Prisma.StringFieldUpdateOperationsInput | string
+  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type venueCountOrderByAggregateInput = {
+export type VenueCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phonenumber?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  scheduledat?: Prisma.SortOrder
+  reasoning?: Prisma.SortOrder
+  scheduleAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
-export type venueAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-}
-
-export type venueMaxOrderByAggregateInput = {
+export type VenueMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phonenumber?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  scheduledat?: Prisma.SortOrder
+  reasoning?: Prisma.SortOrder
+  scheduleAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
-export type venueMinOrderByAggregateInput = {
+export type VenueMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phonenumber?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  scheduledat?: Prisma.SortOrder
-}
-
-export type venueSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  reasoning?: Prisma.SortOrder
+  scheduleAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 
 
-export type venueSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type VenueSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   email?: boolean
   phonenumber?: boolean
-  location?: boolean
-  scheduledat?: boolean
+  reasoning?: boolean
+  scheduleAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["venue"]>
 
-export type venueSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type VenueSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   email?: boolean
   phonenumber?: boolean
-  location?: boolean
-  scheduledat?: boolean
+  reasoning?: boolean
+  scheduleAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["venue"]>
 
-export type venueSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type VenueSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   email?: boolean
   phonenumber?: boolean
-  location?: boolean
-  scheduledat?: boolean
+  reasoning?: boolean
+  scheduleAt?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["venue"]>
 
-export type venueSelectScalar = {
+export type VenueSelectScalar = {
   id?: boolean
   name?: boolean
   email?: boolean
   phonenumber?: boolean
-  location?: boolean
-  scheduledat?: boolean
+  reasoning?: boolean
+  scheduleAt?: boolean
+  createdAt?: boolean
 }
 
-export type venueOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phonenumber" | "location" | "scheduledat", ExtArgs["result"]["venue"]>
+export type VenueOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phonenumber" | "reasoning" | "scheduleAt" | "createdAt", ExtArgs["result"]["venue"]>
 
-export type $venuePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "venue"
+export type $VenuePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "Venue"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     name: string
     email: string
     phonenumber: string
-    location: string
-    scheduledat: string
+    reasoning: string
+    scheduleAt: Date
+    createdAt: Date
   }, ExtArgs["result"]["venue"]>
   composites: {}
 }
 
-export type venueGetPayload<S extends boolean | null | undefined | venueDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$venuePayload, S>
+export type VenueGetPayload<S extends boolean | null | undefined | VenueDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$VenuePayload, S>
 
-export type venueCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<venueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type VenueCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<VenueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: VenueCountAggregateInputType | true
   }
 
-export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['venue'], meta: { name: 'venue' } }
+export interface VenueDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Venue'], meta: { name: 'Venue' } }
   /**
    * Find zero or one Venue that matches the filter.
-   * @param {venueFindUniqueArgs} args - Arguments to find a Venue
+   * @param {VenueFindUniqueArgs} args - Arguments to find a Venue
    * @example
    * // Get one Venue
    * const venue = await prisma.venue.findUnique({
@@ -442,12 +428,12 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findUnique<T extends venueFindUniqueArgs>(args: Prisma.SelectSubset<T, venueFindUniqueArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends VenueFindUniqueArgs>(args: Prisma.SelectSubset<T, VenueFindUniqueArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one Venue that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {venueFindUniqueOrThrowArgs} args - Arguments to find a Venue
+   * @param {VenueFindUniqueOrThrowArgs} args - Arguments to find a Venue
    * @example
    * // Get one Venue
    * const venue = await prisma.venue.findUniqueOrThrow({
@@ -456,13 +442,13 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findUniqueOrThrow<T extends venueFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, venueFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends VenueFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, VenueFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Venue that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueFindFirstArgs} args - Arguments to find a Venue
+   * @param {VenueFindFirstArgs} args - Arguments to find a Venue
    * @example
    * // Get one Venue
    * const venue = await prisma.venue.findFirst({
@@ -471,14 +457,14 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findFirst<T extends venueFindFirstArgs>(args?: Prisma.SelectSubset<T, venueFindFirstArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends VenueFindFirstArgs>(args?: Prisma.SelectSubset<T, VenueFindFirstArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Venue that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueFindFirstOrThrowArgs} args - Arguments to find a Venue
+   * @param {VenueFindFirstOrThrowArgs} args - Arguments to find a Venue
    * @example
    * // Get one Venue
    * const venue = await prisma.venue.findFirstOrThrow({
@@ -487,13 +473,13 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findFirstOrThrow<T extends venueFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, venueFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends VenueFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, VenueFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more Venues that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {VenueFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Venues
    * const venues = await prisma.venue.findMany()
@@ -505,11 +491,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * const venueWithIdOnly = await prisma.venue.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends venueFindManyArgs>(args?: Prisma.SelectSubset<T, venueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends VenueFindManyArgs>(args?: Prisma.SelectSubset<T, VenueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a Venue.
-   * @param {venueCreateArgs} args - Arguments to create a Venue.
+   * @param {VenueCreateArgs} args - Arguments to create a Venue.
    * @example
    * // Create one Venue
    * const Venue = await prisma.venue.create({
@@ -519,11 +505,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  create<T extends venueCreateArgs>(args: Prisma.SelectSubset<T, venueCreateArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends VenueCreateArgs>(args: Prisma.SelectSubset<T, VenueCreateArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many Venues.
-   * @param {venueCreateManyArgs} args - Arguments to create many Venues.
+   * @param {VenueCreateManyArgs} args - Arguments to create many Venues.
    * @example
    * // Create many Venues
    * const venue = await prisma.venue.createMany({
@@ -533,11 +519,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    *     
    */
-  createMany<T extends venueCreateManyArgs>(args?: Prisma.SelectSubset<T, venueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends VenueCreateManyArgs>(args?: Prisma.SelectSubset<T, VenueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many Venues and returns the data saved in the database.
-   * @param {venueCreateManyAndReturnArgs} args - Arguments to create many Venues.
+   * @param {VenueCreateManyAndReturnArgs} args - Arguments to create many Venues.
    * @example
    * // Create many Venues
    * const venue = await prisma.venue.createManyAndReturn({
@@ -557,11 +543,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends venueCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, venueCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends VenueCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, VenueCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a Venue.
-   * @param {venueDeleteArgs} args - Arguments to delete one Venue.
+   * @param {VenueDeleteArgs} args - Arguments to delete one Venue.
    * @example
    * // Delete one Venue
    * const Venue = await prisma.venue.delete({
@@ -571,11 +557,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  delete<T extends venueDeleteArgs>(args: Prisma.SelectSubset<T, venueDeleteArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends VenueDeleteArgs>(args: Prisma.SelectSubset<T, VenueDeleteArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one Venue.
-   * @param {venueUpdateArgs} args - Arguments to update one Venue.
+   * @param {VenueUpdateArgs} args - Arguments to update one Venue.
    * @example
    * // Update one Venue
    * const venue = await prisma.venue.update({
@@ -588,11 +574,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  update<T extends venueUpdateArgs>(args: Prisma.SelectSubset<T, venueUpdateArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends VenueUpdateArgs>(args: Prisma.SelectSubset<T, VenueUpdateArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more Venues.
-   * @param {venueDeleteManyArgs} args - Arguments to filter Venues to delete.
+   * @param {VenueDeleteManyArgs} args - Arguments to filter Venues to delete.
    * @example
    * // Delete a few Venues
    * const { count } = await prisma.venue.deleteMany({
@@ -602,13 +588,13 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  deleteMany<T extends venueDeleteManyArgs>(args?: Prisma.SelectSubset<T, venueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends VenueDeleteManyArgs>(args?: Prisma.SelectSubset<T, VenueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Venues.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {VenueUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many Venues
    * const venue = await prisma.venue.updateMany({
@@ -621,11 +607,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  updateMany<T extends venueUpdateManyArgs>(args: Prisma.SelectSubset<T, venueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends VenueUpdateManyArgs>(args: Prisma.SelectSubset<T, VenueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Venues and returns the data updated in the database.
-   * @param {venueUpdateManyAndReturnArgs} args - Arguments to update many Venues.
+   * @param {VenueUpdateManyAndReturnArgs} args - Arguments to update many Venues.
    * @example
    * // Update many Venues
    * const venue = await prisma.venue.updateManyAndReturn({
@@ -651,11 +637,11 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends venueUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, venueUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends VenueUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, VenueUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Venue.
-   * @param {venueUpsertArgs} args - Arguments to update or create a Venue.
+   * @param {VenueUpsertArgs} args - Arguments to update or create a Venue.
    * @example
    * // Update or create a Venue
    * const venue = await prisma.venue.upsert({
@@ -670,14 +656,14 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  upsert<T extends venueUpsertArgs>(args: Prisma.SelectSubset<T, venueUpsertArgs<ExtArgs>>): Prisma.Prisma__venueClient<runtime.Types.Result.GetResult<Prisma.$venuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends VenueUpsertArgs>(args: Prisma.SelectSubset<T, VenueUpsertArgs<ExtArgs>>): Prisma.Prisma__VenueClient<runtime.Types.Result.GetResult<Prisma.$VenuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of Venues.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueCountArgs} args - Arguments to filter Venues to count.
+   * @param {VenueCountArgs} args - Arguments to filter Venues to count.
    * @example
    * // Count the number of Venues
    * const count = await prisma.venue.count({
@@ -686,8 +672,8 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
   **/
-  count<T extends venueCountArgs>(
-    args?: Prisma.Subset<T, venueCountArgs>,
+  count<T extends VenueCountArgs>(
+    args?: Prisma.Subset<T, VenueCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -726,7 +712,7 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Group by Venue.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {venueGroupByArgs} args - Group by arguments.
+   * @param {VenueGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -741,14 +727,14 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * 
   **/
   groupBy<
-    T extends venueGroupByArgs,
+    T extends VenueGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: venueGroupByArgs['orderBy'] }
-      : { orderBy?: venueGroupByArgs['orderBy'] },
+      ? { orderBy: VenueGroupByArgs['orderBy'] }
+      : { orderBy?: VenueGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -797,20 +783,20 @@ export interface venueDelegate<ExtArgs extends runtime.Types.Extensions.Internal
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, venueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVenueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, VenueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVenueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the venue model
+ * Fields of the Venue model
  */
-readonly fields: venueFieldRefs;
+readonly fields: VenueFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for venue.
+ * The delegate class that acts as a "Promise-like" for Venue.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__venueClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__VenueClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -838,374 +824,375 @@ export interface Prisma__venueClient<T, Null = never, ExtArgs extends runtime.Ty
 
 
 /**
- * Fields of the venue model
+ * Fields of the Venue model
  */
-export interface venueFieldRefs {
-  readonly id: Prisma.FieldRef<"venue", 'Int'>
-  readonly name: Prisma.FieldRef<"venue", 'String'>
-  readonly email: Prisma.FieldRef<"venue", 'String'>
-  readonly phonenumber: Prisma.FieldRef<"venue", 'String'>
-  readonly location: Prisma.FieldRef<"venue", 'String'>
-  readonly scheduledat: Prisma.FieldRef<"venue", 'String'>
+export interface VenueFieldRefs {
+  readonly id: Prisma.FieldRef<"Venue", 'String'>
+  readonly name: Prisma.FieldRef<"Venue", 'String'>
+  readonly email: Prisma.FieldRef<"Venue", 'String'>
+  readonly phonenumber: Prisma.FieldRef<"Venue", 'String'>
+  readonly reasoning: Prisma.FieldRef<"Venue", 'String'>
+  readonly scheduleAt: Prisma.FieldRef<"Venue", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"Venue", 'DateTime'>
 }
     
 
 // Custom InputTypes
 /**
- * venue findUnique
+ * Venue findUnique
  */
-export type venueFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter, which venue to fetch.
+   * Filter, which Venue to fetch.
    */
-  where: Prisma.venueWhereUniqueInput
+  where: Prisma.VenueWhereUniqueInput
 }
 
 /**
- * venue findUniqueOrThrow
+ * Venue findUniqueOrThrow
  */
-export type venueFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter, which venue to fetch.
+   * Filter, which Venue to fetch.
    */
-  where: Prisma.venueWhereUniqueInput
+  where: Prisma.VenueWhereUniqueInput
 }
 
 /**
- * venue findFirst
+ * Venue findFirst
  */
-export type venueFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter, which venue to fetch.
+   * Filter, which Venue to fetch.
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of venues to fetch.
+   * Determine the order of Venues to fetch.
    */
-  orderBy?: Prisma.venueOrderByWithRelationInput | Prisma.venueOrderByWithRelationInput[]
+  orderBy?: Prisma.VenueOrderByWithRelationInput | Prisma.VenueOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for venues.
+   * Sets the position for searching for Venues.
    */
-  cursor?: Prisma.venueWhereUniqueInput
+  cursor?: Prisma.VenueWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` venues from the position of the cursor.
+   * Take `±n` Venues from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` venues.
+   * Skip the first `n` Venues.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of venues.
+   * Filter by unique combinations of Venues.
    */
   distinct?: Prisma.VenueScalarFieldEnum | Prisma.VenueScalarFieldEnum[]
 }
 
 /**
- * venue findFirstOrThrow
+ * Venue findFirstOrThrow
  */
-export type venueFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter, which venue to fetch.
+   * Filter, which Venue to fetch.
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of venues to fetch.
+   * Determine the order of Venues to fetch.
    */
-  orderBy?: Prisma.venueOrderByWithRelationInput | Prisma.venueOrderByWithRelationInput[]
+  orderBy?: Prisma.VenueOrderByWithRelationInput | Prisma.VenueOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for venues.
+   * Sets the position for searching for Venues.
    */
-  cursor?: Prisma.venueWhereUniqueInput
+  cursor?: Prisma.VenueWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` venues from the position of the cursor.
+   * Take `±n` Venues from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` venues.
+   * Skip the first `n` Venues.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of venues.
+   * Filter by unique combinations of Venues.
    */
   distinct?: Prisma.VenueScalarFieldEnum | Prisma.VenueScalarFieldEnum[]
 }
 
 /**
- * venue findMany
+ * Venue findMany
  */
-export type venueFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter, which venues to fetch.
+   * Filter, which Venues to fetch.
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of venues to fetch.
+   * Determine the order of Venues to fetch.
    */
-  orderBy?: Prisma.venueOrderByWithRelationInput | Prisma.venueOrderByWithRelationInput[]
+  orderBy?: Prisma.VenueOrderByWithRelationInput | Prisma.VenueOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing venues.
+   * Sets the position for listing Venues.
    */
-  cursor?: Prisma.venueWhereUniqueInput
+  cursor?: Prisma.VenueWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` venues from the position of the cursor.
+   * Take `±n` Venues from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` venues.
+   * Skip the first `n` Venues.
    */
   skip?: number
   distinct?: Prisma.VenueScalarFieldEnum | Prisma.VenueScalarFieldEnum[]
 }
 
 /**
- * venue create
+ * Venue create
  */
-export type venueCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * The data needed to create a venue.
+   * The data needed to create a Venue.
    */
-  data: Prisma.XOR<Prisma.venueCreateInput, Prisma.venueUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.VenueCreateInput, Prisma.VenueUncheckedCreateInput>
 }
 
 /**
- * venue createMany
+ * Venue createMany
  */
-export type venueCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many venues.
+   * The data used to create many Venues.
    */
-  data: Prisma.venueCreateManyInput | Prisma.venueCreateManyInput[]
+  data: Prisma.VenueCreateManyInput | Prisma.VenueCreateManyInput[]
 }
 
 /**
- * venue createManyAndReturn
+ * Venue createManyAndReturn
  */
-export type venueCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.VenueSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * The data used to create many venues.
+   * The data used to create many Venues.
    */
-  data: Prisma.venueCreateManyInput | Prisma.venueCreateManyInput[]
+  data: Prisma.VenueCreateManyInput | Prisma.VenueCreateManyInput[]
 }
 
 /**
- * venue update
+ * Venue update
  */
-export type venueUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * The data needed to update a venue.
+   * The data needed to update a Venue.
    */
-  data: Prisma.XOR<Prisma.venueUpdateInput, Prisma.venueUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.VenueUpdateInput, Prisma.VenueUncheckedUpdateInput>
   /**
-   * Choose, which venue to update.
+   * Choose, which Venue to update.
    */
-  where: Prisma.venueWhereUniqueInput
+  where: Prisma.VenueWhereUniqueInput
 }
 
 /**
- * venue updateMany
+ * Venue updateMany
  */
-export type venueUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update venues.
+   * The data used to update Venues.
    */
-  data: Prisma.XOR<Prisma.venueUpdateManyMutationInput, Prisma.venueUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.VenueUpdateManyMutationInput, Prisma.VenueUncheckedUpdateManyInput>
   /**
-   * Filter which venues to update
+   * Filter which Venues to update
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
-   * Limit how many venues to update.
+   * Limit how many Venues to update.
    */
   limit?: number
 }
 
 /**
- * venue updateManyAndReturn
+ * Venue updateManyAndReturn
  */
-export type venueUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.VenueSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * The data used to update venues.
+   * The data used to update Venues.
    */
-  data: Prisma.XOR<Prisma.venueUpdateManyMutationInput, Prisma.venueUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.VenueUpdateManyMutationInput, Prisma.VenueUncheckedUpdateManyInput>
   /**
-   * Filter which venues to update
+   * Filter which Venues to update
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
-   * Limit how many venues to update.
+   * Limit how many Venues to update.
    */
   limit?: number
 }
 
 /**
- * venue upsert
+ * Venue upsert
  */
-export type venueUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * The filter to search for the venue to update in case it exists.
+   * The filter to search for the Venue to update in case it exists.
    */
-  where: Prisma.venueWhereUniqueInput
+  where: Prisma.VenueWhereUniqueInput
   /**
-   * In case the venue found by the `where` argument doesn't exist, create a new venue with this data.
+   * In case the Venue found by the `where` argument doesn't exist, create a new Venue with this data.
    */
-  create: Prisma.XOR<Prisma.venueCreateInput, Prisma.venueUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.VenueCreateInput, Prisma.VenueUncheckedCreateInput>
   /**
-   * In case the venue was found with the provided `where` argument, update it with this data.
+   * In case the Venue was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.venueUpdateInput, Prisma.venueUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.VenueUpdateInput, Prisma.VenueUncheckedUpdateInput>
 }
 
 /**
- * venue delete
+ * Venue delete
  */
-export type venueDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
   /**
-   * Filter which venue to delete.
+   * Filter which Venue to delete.
    */
-  where: Prisma.venueWhereUniqueInput
+  where: Prisma.VenueWhereUniqueInput
 }
 
 /**
- * venue deleteMany
+ * Venue deleteMany
  */
-export type venueDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which venues to delete
+   * Filter which Venues to delete
    */
-  where?: Prisma.venueWhereInput
+  where?: Prisma.VenueWhereInput
   /**
-   * Limit how many venues to delete.
+   * Limit how many Venues to delete.
    */
   limit?: number
 }
 
 /**
- * venue without action
+ * Venue without action
  */
-export type venueDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type VenueDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the venue
+   * Select specific fields to fetch from the Venue
    */
-  select?: Prisma.venueSelect<ExtArgs> | null
+  select?: Prisma.VenueSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the venue
+   * Omit specific fields from the Venue
    */
-  omit?: Prisma.venueOmit<ExtArgs> | null
+  omit?: Prisma.VenueOmit<ExtArgs> | null
 }

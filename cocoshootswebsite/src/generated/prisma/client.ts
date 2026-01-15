@@ -60,7 +60,7 @@ export type user = Prisma.userModel
  */
 export type photo = Prisma.photoModel
 /**
- * Model venue
+ * Model Venue
  * 
  */
-export type venue = Prisma.venueModel
+export type Venue = Prisma.VenueModel

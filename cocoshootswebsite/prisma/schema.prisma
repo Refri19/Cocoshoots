@@ -6,6 +6,7 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
 model blog {
   id        Int    @id @default(autoincrement())
   title     String
@@ -13,13 +14,23 @@ model blog {
   date      String
   createdAt String
 }
+
 model feedback {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  category  String
+  email     String
+  category  Category
   message   String
-  createdAt String
+  createdAt DateTime @default(now())
 }
+
+enum Category {
+  suggestion
+  bug
+  praise
+  other
+}
+
 model user {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -27,17 +38,20 @@ model user {
   password  String
   createdAt DateTime @default(now())
 }
+
 model photo {
   id       Int     @id @default(autoincrement())
   name     String?
   filename String?
   img      Bytes?
 }
-model venue {
-  id          Int    @id @default(autoincrement())
+
+model Venue {
+  id          String   @id @default(cuid())
   name        String
-  email       String @unique
+  email       String
   phonenumber String
-  location    String
-  scheduledat String
+  reasoning   String
+  scheduleAt  DateTime
+  createdAt   DateTime @default(now())
 }

@@ -1,4 +1,4 @@
-// Example of an API route in Next.js (app/api/post-photo/route.ts)
+// Example of an API route in Next.js (app/api/post-photo/actions.ts)
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {

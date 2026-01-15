@@ -1,4 +1,4 @@
-// app/api/posts/route.ts
+// app/api/posts/actions.ts
 import { NextResponse } from 'next/server'
 import {prisma} from '@/lib/prisma' // Assumes you have the singleton from the previous step
 

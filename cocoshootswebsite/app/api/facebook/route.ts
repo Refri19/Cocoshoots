@@ -1,4 +1,4 @@
-// app/api/facebook/route.ts
+// app/api/facebook/actions.ts
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -17,7 +17,7 @@ export async function GET() {
     }
 
     // Map Facebook data to your Photo interface format
-    const formattedPosts = data.data.map((post: any) => ({
+    const formattedPosts = data.data.map((post) => ({
       id: post.id,
       title: post.message ? post.message.substring(0, 20) + "..." : "Facebook Post",
       color: "bg-blue-500", // Default brand color

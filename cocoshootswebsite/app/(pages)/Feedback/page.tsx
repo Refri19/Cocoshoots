@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import {createFeedbackAction} from "../../api/feedback/actions";
 
 type FeedbackType = 'bug' | 'suggestion' | 'praise' | 'other';
 
@@ -25,15 +26,26 @@ export default function FeedbackForm() {
     e.preventDefault();
     setStatus('loading');
 
-    // Replace this with your actual API endpoint logic
     try {
-      console.log('Feedback submitted:', formData);
-      // const response = await fetch('/api/feedback', { method: 'POST', body: JSON.stringify(formData) });
-      
-      // Simulating API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setStatus('success');
-      setFormData({ name: '', email: '', category: 'suggestion', message: '' });
+      // Calling the Server Action directly
+      const result = await createFeedbackAction({
+        name: formData.name,
+        email: formData.email,
+        category:formData.category,
+        message:formData.message,
+      });
+
+      if (result.success) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          category: "suggestion",
+          message: '',
+        });
+      } else {
+        setStatus('error');
+      }
     } catch (error) {
       setStatus('error');
     }
@@ -46,7 +58,7 @@ export default function FeedbackForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name Input */}
         <div>
-          <label className="block text-black
+          <label className="block
  font-medium text-slate-700">Name</label>
           <input
             type="text"
@@ -60,7 +72,7 @@ export default function FeedbackForm() {
 
         {/* Email Input */}
         <div>
-          <label className="block text-black
+          <label className="block
  font-medium text-slate-700">Email</label>
           <input
             type="email"
@@ -74,7 +86,7 @@ export default function FeedbackForm() {
 
         {/* Category Dropdown */}
         <div>
-          <label className="block text-black
+          <label className="block
  font-medium text-slate-700">Category</label>
           <select
             className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-black
@@ -91,7 +103,7 @@ export default function FeedbackForm() {
 
         {/* Message Textarea */}
         <div>
-          <label className="block text-black
+          <label className="block
  font-medium text-slate-700">Message</label>
           <textarea
             required
@@ -113,11 +125,11 @@ export default function FeedbackForm() {
 
         {/* Status Messages */}
         {status === 'success' && (
-          <p className="text-green-600 text-black
+          <p className="text-green-600
  text-center">Thank you! Your feedback has been sent.</p>
         )}
         {status === 'error' && (
-          <p className="text-red-600 text-black
+          <p className="text-red-600
  text-center">Something went wrong. Please try again.</p>
         )}
       </form>

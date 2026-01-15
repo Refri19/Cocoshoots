@@ -37,22 +37,25 @@ export type FeedbackSumAggregateOutputType = {
 export type FeedbackMinAggregateOutputType = {
   id: number | null
   name: string | null
-  category: string | null
+  email: string | null
+  category: $Enums.Category | null
   message: string | null
-  createdAt: string | null
+  createdAt: Date | null
 }
 
 export type FeedbackMaxAggregateOutputType = {
   id: number | null
   name: string | null
-  category: string | null
+  email: string | null
+  category: $Enums.Category | null
   message: string | null
-  createdAt: string | null
+  createdAt: Date | null
 }
 
 export type FeedbackCountAggregateOutputType = {
   id: number
   name: number
+  email: number
   category: number
   message: number
   createdAt: number
@@ -71,6 +74,7 @@ export type FeedbackSumAggregateInputType = {
 export type FeedbackMinAggregateInputType = {
   id?: true
   name?: true
+  email?: true
   category?: true
   message?: true
   createdAt?: true
@@ -79,6 +83,7 @@ export type FeedbackMinAggregateInputType = {
 export type FeedbackMaxAggregateInputType = {
   id?: true
   name?: true
+  email?: true
   category?: true
   message?: true
   createdAt?: true
@@ -87,6 +92,7 @@ export type FeedbackMaxAggregateInputType = {
 export type FeedbackCountAggregateInputType = {
   id?: true
   name?: true
+  email?: true
   category?: true
   message?: true
   createdAt?: true
@@ -182,9 +188,10 @@ export type feedbackGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type FeedbackGroupByOutputType = {
   id: number
   name: string
-  category: string
+  email: string
+  category: $Enums.Category
   message: string
-  createdAt: string
+  createdAt: Date
   _count: FeedbackCountAggregateOutputType | null
   _avg: FeedbackAvgAggregateOutputType | null
   _sum: FeedbackSumAggregateOutputType | null
@@ -213,14 +220,16 @@ export type feedbackWhereInput = {
   NOT?: Prisma.feedbackWhereInput | Prisma.feedbackWhereInput[]
   id?: Prisma.IntFilter<"feedback"> | number
   name?: Prisma.StringFilter<"feedback"> | string
-  category?: Prisma.StringFilter<"feedback"> | string
+  email?: Prisma.StringFilter<"feedback"> | string
+  category?: Prisma.EnumCategoryFilter<"feedback"> | $Enums.Category
   message?: Prisma.StringFilter<"feedback"> | string
-  createdAt?: Prisma.StringFilter<"feedback"> | string
+  createdAt?: Prisma.DateTimeFilter<"feedback"> | Date | string
 }
 
 export type feedbackOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   category?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -232,14 +241,16 @@ export type feedbackWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.feedbackWhereInput[]
   NOT?: Prisma.feedbackWhereInput | Prisma.feedbackWhereInput[]
   name?: Prisma.StringFilter<"feedback"> | string
-  category?: Prisma.StringFilter<"feedback"> | string
+  email?: Prisma.StringFilter<"feedback"> | string
+  category?: Prisma.EnumCategoryFilter<"feedback"> | $Enums.Category
   message?: Prisma.StringFilter<"feedback"> | string
-  createdAt?: Prisma.StringFilter<"feedback"> | string
+  createdAt?: Prisma.DateTimeFilter<"feedback"> | Date | string
 }, "id">
 
 export type feedbackOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   category?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -256,67 +267,76 @@ export type feedbackScalarWhereWithAggregatesInput = {
   NOT?: Prisma.feedbackScalarWhereWithAggregatesInput | Prisma.feedbackScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"feedback"> | number
   name?: Prisma.StringWithAggregatesFilter<"feedback"> | string
-  category?: Prisma.StringWithAggregatesFilter<"feedback"> | string
+  email?: Prisma.StringWithAggregatesFilter<"feedback"> | string
+  category?: Prisma.EnumCategoryWithAggregatesFilter<"feedback"> | $Enums.Category
   message?: Prisma.StringWithAggregatesFilter<"feedback"> | string
-  createdAt?: Prisma.StringWithAggregatesFilter<"feedback"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"feedback"> | Date | string
 }
 
 export type feedbackCreateInput = {
   name: string
-  category: string
+  email: string
+  category: $Enums.Category
   message: string
-  createdAt: string
+  createdAt?: Date | string
 }
 
 export type feedbackUncheckedCreateInput = {
   id?: number
   name: string
-  category: string
+  email: string
+  category: $Enums.Category
   message: string
-  createdAt: string
+  createdAt?: Date | string
 }
 
 export type feedbackUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type feedbackUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type feedbackCreateManyInput = {
   id?: number
   name: string
-  category: string
+  email: string
+  category: $Enums.Category
   message: string
-  createdAt: string
+  createdAt?: Date | string
 }
 
 export type feedbackUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type feedbackUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   message?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type feedbackCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   category?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -329,6 +349,7 @@ export type feedbackAvgOrderByAggregateInput = {
 export type feedbackMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   category?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -337,6 +358,7 @@ export type feedbackMaxOrderByAggregateInput = {
 export type feedbackMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   category?: Prisma.SortOrder
   message?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -346,11 +368,20 @@ export type feedbackSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type EnumCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.Category
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 
 
 export type feedbackSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  email?: boolean
   category?: boolean
   message?: boolean
   createdAt?: boolean
@@ -359,6 +390,7 @@ export type feedbackSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type feedbackSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  email?: boolean
   category?: boolean
   message?: boolean
   createdAt?: boolean
@@ -367,6 +399,7 @@ export type feedbackSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type feedbackSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  email?: boolean
   category?: boolean
   message?: boolean
   createdAt?: boolean
@@ -375,12 +408,13 @@ export type feedbackSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type feedbackSelectScalar = {
   id?: boolean
   name?: boolean
+  email?: boolean
   category?: boolean
   message?: boolean
   createdAt?: boolean
 }
 
-export type feedbackOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "category" | "message" | "createdAt", ExtArgs["result"]["feedback"]>
+export type feedbackOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "category" | "message" | "createdAt", ExtArgs["result"]["feedback"]>
 
 export type $feedbackPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "feedback"
@@ -388,9 +422,10 @@ export type $feedbackPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
-    category: string
+    email: string
+    category: $Enums.Category
     message: string
-    createdAt: string
+    createdAt: Date
   }, ExtArgs["result"]["feedback"]>
   composites: {}
 }
@@ -816,9 +851,10 @@ export interface Prisma__feedbackClient<T, Null = never, ExtArgs extends runtime
 export interface feedbackFieldRefs {
   readonly id: Prisma.FieldRef<"feedback", 'Int'>
   readonly name: Prisma.FieldRef<"feedback", 'String'>
-  readonly category: Prisma.FieldRef<"feedback", 'String'>
+  readonly email: Prisma.FieldRef<"feedback", 'String'>
+  readonly category: Prisma.FieldRef<"feedback", 'Category'>
   readonly message: Prisma.FieldRef<"feedback", 'String'>
-  readonly createdAt: Prisma.FieldRef<"feedback", 'String'>
+  readonly createdAt: Prisma.FieldRef<"feedback", 'DateTime'>
 }
     
 

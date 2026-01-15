@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Camera, ImageIcon, Download } from 'lucide-react';
+import { Camera, ImageIcon, Download, ChevronDown } from 'lucide-react';
 import { useSession, signIn } from 'next-auth/react';
 import Link from "next/link";
 
@@ -43,16 +43,15 @@ const WelcomeScreen = ({ onJoin }: { onJoin: () => void }) => {
 const MainPageContent = ({ username }: { username: string }) => {
   // 1. STATE FOR PHOTOS
   const [photos, setPhotos] = useState<Photo[]>([
-    { id: 1, title: "Photo 1", color: "bg-orange-200", caption: "" },
-    { id: 2, title: "Photo 2", color: "bg-blue-300", caption: "" },
-    { id: 3, title: "Photo 3", color: "bg-stone-200", caption: "" },
-    { id: 4, title: "Photo 4", color: "bg-emerald-200", caption: "" },
-    { id: 5, title: "Photo 5", color: "bg-slate-300", caption: "" },
-    { id: 6, title: "Photo 6", color: "bg-pink-100", caption: "" },
+    { id: 1, title: "Photo 1", color: "bg-orange-200", caption: "Sunset vibes" },
+    { id: 2, title: "Photo 2", color: "bg-blue-300", caption: "Ocean breeze" },
+    { id: 3, title: "Photo 3", color: "bg-stone-200", caption: "City streets" },
+    { id: 4, title: "Photo 4", color: "bg-emerald-200", caption: "Forest walk" },
+    { id: 5, title: "Photo 5", color: "bg-slate-300", caption: "Mountain high" },
+    { id: 6, title: "Photo 6", color: "bg-pink-100", caption: "Morning coffee" },
   ]);
 
-  // 2. STATE FOR CLICK/PRESS INTERACTION (New)
-  // This tracks which photo ID is currently "active" to show the overlay
+  // 2. STATE FOR CLICK/PRESS INTERACTION
   const [activePhotoId, setActivePhotoId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -84,7 +83,6 @@ const MainPageContent = ({ username }: { username: string }) => {
   // 3. DOWNLOAD LOGIC
   const handleDownload = async (url: string, title: string) => {
     try {
-      // Calls your internal API to bypass CORS
       const response = await fetch(`/api/download?url=${encodeURIComponent(url)}`);
       if (!response.ok) throw new Error('Download failed');
 
@@ -95,7 +93,6 @@ const MainPageContent = ({ username }: { username: string }) => {
         const base64data = reader.result as string;
         const link = document.createElement('a');
         link.href = base64data;
-        // Forces .jpg extension
         link.download = `${title.replace(/\s+/g, '-').toLowerCase() || 'download'}.jpg`;
 
         document.body.appendChild(link);
@@ -110,9 +107,8 @@ const MainPageContent = ({ username }: { username: string }) => {
     }
   };
 
-  // 4. HANDLER FOR TOGGLING OVERLAY
-  const toggleOverlay = (id: number) => {
-    // If clicking the same photo, close it. If clicking a new one, open it.
+  // 4. HANDLER FOR TOGGLING DROPDOWN
+  const toggleDropdown = (id: number) => {
     setActivePhotoId(prev => (prev === id ? null : id));
   };
 
@@ -124,56 +120,70 @@ const MainPageContent = ({ username }: { username: string }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {photos.map((photo) => {
-            // Determine if this specific photo is active (clicked)
             const isActive = activePhotoId === photo.id;
 
             return (
                 <div
                     key={photo.id}
-                    // Add click handler to the container
-                    onClick={() => toggleOverlay(photo.id)}
-                    className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 cursor-pointer"
+                    onClick={() => toggleDropdown(photo.id)}
+                    className={`group bg-white rounded-[2.5rem] overflow-hidden shadow-sm transition-all duration-500 border border-gray-100 cursor-pointer 
+                ${isActive ? 'ring-4 ring-[#D2532B]/20 shadow-xl' : 'hover:shadow-xl'}
+              `}
                 >
+                  {/* IMAGE SECTION - Removed the overlay button from here */}
                   <div className={`h-64 ${photo.color} relative overflow-hidden flex items-center justify-center`}>
                     {photo.url ? (
                         <img
                             src={photo.url}
                             alt={photo.title}
-                            className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}
+                            className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-105' : 'group-hover:scale-110'}`}
                         />
                     ) : (
                         <ImageIcon className="text-white/40 w-16 h-16" />
                     )}
-
-                    {/* OVERLAY VISIBILITY LOGIC:
-                   Visible if:
-                   1. The photo has a URL
-                   AND
-                   2. (The user is hovering via CSS OR the user has clicked/set 'isActive')
-                */}
-                    {photo.url && (
-                        <div
-                            className={`absolute inset-0 bg-black/20 backdrop-blur-[2px] transition-opacity duration-300 flex items-center justify-center
-                      ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
-                    `}
-                        >
-                          <button
-                              onClick={(e) => {
-                                e.stopPropagation(); // Prevents the card click from triggering immediately
-                                handleDownload(photo.url!, photo.title);
-                              }}
-                              className="bg-white text-[#253939] px-6 py-3 rounded-2xl font-bold shadow-lg hover:bg-[#D2532B] hover:text-white transition-all transform hover:scale-105 flex items-center gap-2"
-                          >
-                            <Download size={20} />
-                            <span>Download JPG</span>
-                          </button>
-                        </div>
-                    )}
                   </div>
 
+                  {/* TEXT & DROPDOWN SECTION */}
                   <div className="p-6">
-                    <h3 className="font-bold text-lg text-[#253939]">{photo.title}</h3>
-                    {photo.caption && <p className="text-gray-500 mt-1 text-sm">{photo.caption}</p>}
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-bold text-lg text-[#253939]">{photo.title}</h3>
+                        {photo.caption && <p className="text-gray-500 mt-1 text-sm">{photo.caption}</p>}
+                      </div>
+                      {/* Indicator Icon */}
+                      <ChevronDown
+                          className={`text-gray-300 transition-transform duration-300 ${isActive ? 'rotate-180 text-[#D2532B]' : ''}`}
+                          size={20}
+                      />
+                    </div>
+
+                    {/* THE DROPDOWN AREA */}
+                    {/* We use max-height transition for the "slide down" effect */}
+                    <div
+                        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                            isActive ? 'grid-rows-[1fr] opacity-100 mt-4 pt-4 border-t border-gray-100' : 'grid-rows-[0fr] opacity-0'
+                        }`}
+                    >
+                      <div className="overflow-hidden">
+                        {photo.url ? (
+                            <button
+                                onClick={(e) => {
+                                  e.stopPropagation(); // Stop the card from closing when clicking download
+                                  handleDownload(photo.url!, photo.title);
+                                }}
+                                className="w-full bg-[#253939] text-white py-3 px-4 rounded-xl font-bold hover:bg-[#D2532B] transition-colors flex items-center justify-center gap-2"
+                            >
+                              <Download size={18} />
+                              <Link href={'/api/download/${image.id}'}>Download JPG</Link>
+                            </button>
+                        ) : (
+                            <div className="text-center text-sm text-gray-400 italic py-2">
+                              No image available to download
+                            </div>
+                        )}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
             );

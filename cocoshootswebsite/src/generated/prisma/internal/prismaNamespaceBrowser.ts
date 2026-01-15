@@ -55,7 +55,7 @@ export const ModelName = {
   feedback: 'feedback',
   user: 'user',
   photo: 'photo',
-  venue: 'venue'
+  Venue: 'Venue'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,6 +85,7 @@ export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof Blog
 export const FeedbackScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  email: 'email',
   category: 'category',
   message: 'message',
   createdAt: 'createdAt'
@@ -119,8 +120,9 @@ export const VenueScalarFieldEnum = {
   name: 'name',
   email: 'email',
   phonenumber: 'phonenumber',
-  location: 'location',
-  scheduledat: 'scheduledat'
+  reasoning: 'reasoning',
+  scheduleAt: 'scheduleAt',
+  createdAt: 'createdAt'
 } as const
 
 export type VenueScalarFieldEnum = (typeof VenueScalarFieldEnum)[keyof typeof VenueScalarFieldEnum]

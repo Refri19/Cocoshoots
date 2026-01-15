@@ -30,13 +30,6 @@ export async function POST(request: NextRequest, res: NextResponse) {
       return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
     }
 
-    // 3. Handle successful login (e.g., create a session)
-    // ***
-    // NOTE: You should use a library like NextAuth.js or manually set
-    // a secure HttpOnly cookie here to manage the user session.
-    // This example returns a success message for simplicity.
-    // ***
-
     return NextResponse.json({ message: 'Login successful', user: { email: user.email, name: user.username } }, { status: 200 });
 
   } catch (error) {

@@ -388,7 +388,7 @@ export const ModelName = {
   feedback: 'feedback',
   user: 'user',
   photo: 'photo',
-  venue: 'venue'
+  Venue: 'Venue'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -704,76 +704,76 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    venue: {
-      payload: Prisma.$venuePayload<ExtArgs>
-      fields: Prisma.venueFieldRefs
+    Venue: {
+      payload: Prisma.$VenuePayload<ExtArgs>
+      fields: Prisma.VenueFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.venueFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload> | null
+          args: Prisma.VenueFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.venueFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         findFirst: {
-          args: Prisma.venueFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload> | null
+          args: Prisma.VenueFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.venueFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         findMany: {
-          args: Prisma.venueFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>[]
+          args: Prisma.VenueFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>[]
         }
         create: {
-          args: Prisma.venueCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         createMany: {
-          args: Prisma.venueCreateManyArgs<ExtArgs>
+          args: Prisma.VenueCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.venueCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>[]
+          args: Prisma.VenueCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>[]
         }
         delete: {
-          args: Prisma.venueDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         update: {
-          args: Prisma.venueUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         deleteMany: {
-          args: Prisma.venueDeleteManyArgs<ExtArgs>
+          args: Prisma.VenueDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.venueUpdateManyArgs<ExtArgs>
+          args: Prisma.VenueUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.venueUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>[]
+          args: Prisma.VenueUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>[]
         }
         upsert: {
-          args: Prisma.venueUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$venuePayload>
+          args: Prisma.VenueUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VenuePayload>
         }
         aggregate: {
           args: Prisma.VenueAggregateArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AggregateVenue>
         }
         groupBy: {
-          args: Prisma.venueGroupByArgs<ExtArgs>
+          args: Prisma.VenueGroupByArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.VenueGroupByOutputType>[]
         }
         count: {
-          args: Prisma.venueCountArgs<ExtArgs>
+          args: Prisma.VenueCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.VenueCountAggregateOutputType> | number
         }
       }
@@ -828,6 +828,7 @@ export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof Blog
 export const FeedbackScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  email: 'email',
   category: 'category',
   message: 'message',
   createdAt: 'createdAt'
@@ -862,8 +863,9 @@ export const VenueScalarFieldEnum = {
   name: 'name',
   email: 'email',
   phonenumber: 'phonenumber',
-  location: 'location',
-  scheduledat: 'scheduledat'
+  reasoning: 'reasoning',
+  scheduleAt: 'scheduleAt',
+  createdAt: 'createdAt'
 } as const
 
 export type VenueScalarFieldEnum = (typeof VenueScalarFieldEnum)[keyof typeof VenueScalarFieldEnum]
@@ -902,6 +904,13 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+/**
+ * Reference to a field of type 'Category'
+ */
+export type EnumCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Category'>
     
 
 
@@ -1024,7 +1033,7 @@ export type GlobalOmitConfig = {
   feedback?: Prisma.feedbackOmit
   user?: Prisma.userOmit
   photo?: Prisma.photoOmit
-  venue?: Prisma.venueOmit
+  venue?: Prisma.VenueOmit
 }
 
 /* Types for Logging */

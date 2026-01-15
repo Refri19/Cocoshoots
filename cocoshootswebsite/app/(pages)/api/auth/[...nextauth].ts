@@ -8,6 +8,7 @@ export const authOptions = {
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
     }),
   ],
+
   // Optional: Custom pages to override default signin
   pages: {
     signIn: '/auth/signin', 
