@@ -689,7 +689,7 @@ export interface blogDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * @example
    * // Ordered by age ascending
    * // Where email contains prisma.io
-   * // Limited to the 10 users
+   * // Limited to the 10 user-viewer
    * const aggregations = await prisma.user.aggregate({
    *   _avg: {
    *     age: true,

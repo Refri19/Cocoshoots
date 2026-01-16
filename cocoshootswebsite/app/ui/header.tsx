@@ -175,7 +175,6 @@ export default function Header() {
                     </div>
 
                     <DropdownLink href="/Profile" label="Your Profile" desc="Edit your personal information" />
-
                     <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded-xl my-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-bold">Dark mode</span>

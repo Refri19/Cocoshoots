@@ -199,7 +199,7 @@ export interface PrismaClient<
     * Example usage:
     * ```ts
     * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
+    * const user-viewer = await prisma.user.findMany()
     * ```
     */
   get user(): Prisma.userDelegate<ExtArgs, { omit: OmitOpts }>;

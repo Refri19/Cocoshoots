@@ -5,17 +5,19 @@ import Header from './ui/header'; // Check your import path
 import Footer from './ui/footer'; // Check your import path
 import { ThemeProvider } from "next-themes"; // Or import from your -provider.tsx
 
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
   // Define routes where Header/Footer should be hidden
-  const hideAppLayout = ['/login', '/Register', '/forgot-password'].includes(pathname);
+  const hideAppLayout = ['/login', '/Register', '/forgot-password' , '/admin'].includes(pathname);
+
 
   return (
     <ThemeProvider 
       attribute="class" 
-      defaultTheme="system" 
-      enableSystem 
+      defaultTheme="light"
+      enableSystem
     >
       {/* Conditionally render Header */}
       {!hideAppLayout && <Header />}

@@ -6,7 +6,7 @@ export default withAuth(
     const token = req.nextauth.token;
     const isLoginPage = req.nextUrl.pathname === "/login";
 
-    // Prevent logged-in users from accessing the login page
+    // Prevent logged-in user-viewer from accessing the login page
     if (token && isLoginPage) {
       return NextResponse.redirect(new URL("/", req.nextUrl));
     }
@@ -29,8 +29,13 @@ export default withAuth(
   }
 );
 
+// middleware.ts
+// middleware.ts
 export const config = {
-  // Protect all routes except static files and specific public paths
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)','.admin/:path*','/login',],
-
+    matcher: [
+        // Protect all admin routes
+        '/admin/:path*',
+        // Protect other routes but ignore static files
+        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    ],
 };

@@ -101,7 +101,7 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of users to fetch.
+   * Determine the order of user-viewer to fetch.
    */
   orderBy?: Prisma.userOrderByWithRelationInput | Prisma.userOrderByWithRelationInput[]
   /**
@@ -113,19 +113,19 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` users from the position of the cursor.
+   * Take `±n` user-viewer from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` users.
+   * Skip the first `n` user-viewer.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned users
+   * Count returned user-viewer
   **/
   _count?: true | UserCountAggregateInputType
   /**
@@ -469,10 +469,10 @@ export interface userDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * @param {userFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Users
-   * const users = await prisma.user.findMany()
+   * const user-viewer = await prisma.user.findMany()
    * 
    * // Get first 10 Users
-   * const users = await prisma.user.findMany({ take: 10 })
+   * const user-viewer = await prisma.user.findMany({ take: 10 })
    * 
    * // Only select the `id`
    * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
@@ -677,7 +677,7 @@ export interface userDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * @example
    * // Ordered by age ascending
    * // Where email contains prisma.io
-   * // Limited to the 10 users
+   * // Limited to the 10 user-viewer
    * const aggregations = await prisma.user.aggregate({
    *   _avg: {
    *     age: true,
@@ -878,31 +878,31 @@ export type userFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of users to fetch.
+   * Determine the order of user-viewer to fetch.
    */
   orderBy?: Prisma.userOrderByWithRelationInput | Prisma.userOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for users.
+   * Sets the position for searching for user-viewer.
    */
   cursor?: Prisma.userWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` users from the position of the cursor.
+   * Take `±n` user-viewer from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` users.
+   * Skip the first `n` user-viewer.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of users.
+   * Filter by unique combinations of user-viewer.
    */
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
@@ -926,31 +926,31 @@ export type userFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of users to fetch.
+   * Determine the order of user-viewer to fetch.
    */
   orderBy?: Prisma.userOrderByWithRelationInput | Prisma.userOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for users.
+   * Sets the position for searching for user-viewer.
    */
   cursor?: Prisma.userWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` users from the position of the cursor.
+   * Take `±n` user-viewer from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` users.
+   * Skip the first `n` user-viewer.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of users.
+   * Filter by unique combinations of user-viewer.
    */
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
@@ -968,31 +968,31 @@ export type userFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.userOmit<ExtArgs> | null
   /**
-   * Filter, which users to fetch.
+   * Filter, which user-viewer to fetch.
    */
   where?: Prisma.userWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of users to fetch.
+   * Determine the order of user-viewer to fetch.
    */
   orderBy?: Prisma.userOrderByWithRelationInput | Prisma.userOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing users.
+   * Sets the position for listing user-viewer.
    */
   cursor?: Prisma.userWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` users from the position of the cursor.
+   * Take `±n` user-viewer from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` users.
+   * Skip the first `n` user-viewer.
    */
   skip?: number
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
@@ -1021,7 +1021,7 @@ export type userCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
  */
 export type userCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many users.
+   * The data used to create many user-viewer.
    */
   data: Prisma.userCreateManyInput | Prisma.userCreateManyInput[]
 }
@@ -1039,7 +1039,7 @@ export type userCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.userOmit<ExtArgs> | null
   /**
-   * The data used to create many users.
+   * The data used to create many user-viewer.
    */
   data: Prisma.userCreateManyInput | Prisma.userCreateManyInput[]
 }
@@ -1071,15 +1071,15 @@ export type userUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
  */
 export type userUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update users.
+   * The data used to update user-viewer.
    */
   data: Prisma.XOR<Prisma.userUpdateManyMutationInput, Prisma.userUncheckedUpdateManyInput>
   /**
-   * Filter which users to update
+   * Filter which user-viewer to update
    */
   where?: Prisma.userWhereInput
   /**
-   * Limit how many users to update.
+   * Limit how many user-viewer to update.
    */
   limit?: number
 }
@@ -1097,15 +1097,15 @@ export type userUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.userOmit<ExtArgs> | null
   /**
-   * The data used to update users.
+   * The data used to update user-viewer.
    */
   data: Prisma.XOR<Prisma.userUpdateManyMutationInput, Prisma.userUncheckedUpdateManyInput>
   /**
-   * Filter which users to update
+   * Filter which user-viewer to update
    */
   where?: Prisma.userWhereInput
   /**
-   * Limit how many users to update.
+   * Limit how many user-viewer to update.
    */
   limit?: number
 }
@@ -1159,11 +1159,11 @@ export type userDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
  */
 export type userDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which users to delete
+   * Filter which user-viewer to delete
    */
   where?: Prisma.userWhereInput
   /**
-   * Limit how many users to delete.
+   * Limit how many user-viewer to delete.
    */
   limit?: number
 }

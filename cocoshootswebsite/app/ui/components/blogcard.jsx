@@ -49,7 +49,7 @@ export default function BlogCard({ post }) {
           </div>
           <button 
             onClick={() => setIsExpanded(!isExpanded)}
-            className="px-8 py-3 rounded-xl bg-brand-orange text-white font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            className="px-8 py-3 rounded-xl bg-brand-orange font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer"
           >
             {isExpanded ? 'Show Less' : 'Read Full Article'}
           </button>
