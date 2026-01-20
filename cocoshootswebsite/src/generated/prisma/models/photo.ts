@@ -328,10 +328,6 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type NullableBytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes | null
-}
-
 
 
 export type photoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -658,7 +654,7 @@ export interface photoDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * @example
    * // Ordered by age ascending
    * // Where email contains prisma.io
-   * // Limited to the 10 user-viewer
+   * // Limited to the 10 users
    * const aggregations = await prisma.user.aggregate({
    *   _avg: {
    *     age: true,

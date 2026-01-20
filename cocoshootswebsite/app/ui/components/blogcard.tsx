@@ -1,7 +1,14 @@
 "use client";
 import React, { useState } from 'react';
 
-export default function BlogCard({ post }) {
+interface Blogcard{
+  category: string,
+      title: string,
+      excerpt: string,
+      morecontent: string,
+  createdAt: string,
+}
+export default function BlogCard({ category,title, excerpt,morecontent,createdAt}: Blogcard) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -17,27 +24,27 @@ export default function BlogCard({ post }) {
     >
       <div className="space-y-6"> {/* Increased spacing for the wider layout */}
         <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-brand-orange text-brand-cream">
-          {post.category}
+          {category}
         </span>
 
         <h2 className="text-3xl font-bold leading-tight"> {/* Increased text size */}
-          {post.title}
+          {title}
         </h2>
 
         <p className="text-base leading-relaxed opacity-80 max-w-2xl">
-          {post.excerpt}
+          {excerpt}
         </p>
 
         {/* Expanded Content Area */}
         <div 
           className={`transition-all duration-700 ease-in-out overflow-hidden ${
-            isExpanded ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'
+            isExpanded ? 'max-h-125 opacity-100 mt-6' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="grid md:grid-cols-2 gap-8 border-t border-brand-orange/20 pt-8">
             <div className="space-y-4 text-sm opacity-90">
               <p>
-                {post.morecontent}
+                {morecontent}
               </p>
             </div>
           </div>
@@ -45,7 +52,7 @@ export default function BlogCard({ post }) {
 
         <div className="flex justify-between items-center pt-4 border-t border-brand-orange/5">
           <div className="text-xs font-semibold opacity-50 uppercase tracking-widest">
-            {post.date}
+            Created At: {createdAt}
           </div>
           <button 
             onClick={() => setIsExpanded(!isExpanded)}

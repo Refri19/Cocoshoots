@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client" // Note: "prisma-client" is the new v7 provider
-  output   = "../src/generated/prisma" // Specify a custom output path
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -8,11 +8,13 @@ datasource db {
 }
 
 model blog {
-  id        Int    @id @default(autoincrement())
-  title     String
-  excerpt   String
-  date      String
-  createdAt String
+  id          Int    @id @default(autoincrement())
+  blogimage   Bytes?
+  category    String
+  title       String
+  excerpt     String
+  morecontent String
+  createdAt   String
 }
 
 model feedback {

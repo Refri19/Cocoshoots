@@ -159,7 +159,7 @@ export default function Header() {
                         className="w-full h-full object-cover"
                     />
                 ) : (
-                    session?.user?.name ? session.user.name.substring(0, 2).toUpperCase() : "JS"
+                    session?.user?.name ? session.user.name.substring(0, 2).toUpperCase() : "G"
                 )}
               </button>
 
@@ -178,7 +178,7 @@ export default function Header() {
                     <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded-xl my-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-bold">Dark mode</span>
-                        <span className="text-[10px] text-gray-400">Night visibility</span>
+                        <span className="text-[10px] text-gray-400">This mode is still in Beta version Because this website was done alone</span>
                       </div>
                       <InlineSwitch />
                     </div>

@@ -4,8 +4,8 @@ import {LayoutDashboard, Users, NewspaperIcon, LogOut, CameraIcon} from 'lucide-
 
 const navItems = [
     { name: 'Dashboard', href: 'dashboard', icon: LayoutDashboard },
-    { name: 'Image upload', href: 'image', icon: CameraIcon },
-    {name: 'Blog Creaton ', href: 'blog-creaton', icon: NewspaperIcon },
+    { name: 'Image upload', href: 'image-upload', icon: CameraIcon },
+    {name: 'Blog Creation ', href: 'blog-creation', icon: NewspaperIcon },
     {name: 'View Venues', href: 'venues', icon: NewspaperIcon },
     { name: 'View Users', href: 'user-viewer', icon: Users },
 

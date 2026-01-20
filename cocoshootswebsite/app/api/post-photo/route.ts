@@ -12,8 +12,8 @@ export async function POST(request: Request) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        url: photoUrl,       // URL of the photo to post
-        caption: caption,   // Text for the post
+        url: photoUrl,
+        caption: caption,
         access_token: accessToken,
       }),
     });

@@ -115,7 +115,7 @@ const MainPageContent = ({ username }: { username: string }) => {
   return (
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold text-[#253939]">Welcome, {username}</h2>
+          <h2 className="text-2xl font-bold ">Welcome, {username}</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -133,9 +133,8 @@ const MainPageContent = ({ username }: { username: string }) => {
                   {/* IMAGE SECTION - Removed the overlay button from here */}
                   <div className={`h-64 ${photo.color} relative overflow-hidden flex items-center justify-center`}>
                     {photo.url ? (
-                        <img
-                            src={photo.url}
-                            alt={photo.title}
+                        <image
+                            href={photo.url}
                             className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-105' : 'group-hover:scale-110'}`}
                         />
                     ) : (

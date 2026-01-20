@@ -22,8 +22,9 @@ export default function LoginPage() {
 
     try {
       // 1. Check your admin credentials
-      if (email === 'admin@example.com' && password === process.env.NEXT_PUBLIC_ADMIN_AUTH_KEY) {
-
+      if (email === 'admin@example.com' && password === 'admin123' ) {
+        {/*process.env.NEXT_PUBLIC_ADMIN_AUTH_KEY
+        this is for if the app is deployed*/}
         // 2. Use NextAuth's signIn to create the session the middleware expects
         // 'credentials' is the standard provider name
         const result = await signIn('credentials', {
@@ -74,7 +75,7 @@ export default function LoginPage() {
                       type="email"
                       required
                       value={email}
-                      placeholder="Try: admin@example.com"
+                      placeholder="Email Adress"
                       onChange={(e) => setEmail(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#D2532B] sm:text-sm"
                   />
@@ -96,7 +97,7 @@ export default function LoginPage() {
                       type="password"
                       required
                       value={password}
-                      placeholder="Try: admin123"
+                      placeholder="Password"
                       onChange={(e) => setPassword(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#D2532B] sm:text-sm"
                   />
@@ -112,7 +113,6 @@ export default function LoginPage() {
               >
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>
-
               <div className="relative flex py-2 items-center">
                 <div className="grow border-t border-gray-200"></div>
                 <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-bold">Or continue with</span>

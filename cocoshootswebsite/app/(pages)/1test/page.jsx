@@ -5,7 +5,7 @@ import Calendar from '../../ui/components/calendar.jsx';
 import MenuBarIcon from '../../ui/components/menuicon'; 
 import Facebookicon from '../../ui/components/facebook-icon';
 import Link from "next/link";
-import CardComponent from '../../ui/components/blogcard';
+import CardComponent from '../../ui/components/blogcard.tsx';
 import Googleicon from '@/components/google-icon';
 
 export default function Test() {

@@ -17,7 +17,7 @@ export async function GET(
         });
 
         if (!imageRecord) {
-            return new NextResponse('Image-upload not found', { status: 404 });
+            return new NextResponse('image-image-upload not found', { status: 404 });
         }
 
         return new NextResponse(imageRecord.img, {
