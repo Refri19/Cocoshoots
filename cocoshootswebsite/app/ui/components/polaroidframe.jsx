@@ -1,4 +1,5 @@
 import React from 'react';
+//import {saveFacebookPost} from "@/api/image-upload/actions.tsx";
 
 const PolaroidFrame = ({ 
   imageSrc = Logo, 
@@ -26,17 +27,8 @@ const PolaroidFrame = ({
           </clipPath>
         </defs>
 
-        {/* The Photo */}
-        <image 
-          href={imageSrc} 
-          clipPath="url(#photo-area)"
-          x="25" 
-          y="25" 
-          width="300" 
-          height="310" 
-          preserveAspectRatio="xMidYMid slice"
-          
-        />
+        {/* The images */}
+        <FacebookEmbed url={saveFacebookPost(url)} width={328} captioned />
 
         {/* Caption Text */}
         <text 

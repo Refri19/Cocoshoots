@@ -54,7 +54,7 @@ export const ModelName = {
   blog: 'blog',
   feedback: 'feedback',
   user: 'user',
-  photo: 'photo',
+  facebookpost: 'facebookpost',
   Venue: 'Venue'
 } as const
 
@@ -107,14 +107,13 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const PhotoScalarFieldEnum = {
+export const FacebookpostScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  filename: 'filename',
-  img: 'img'
+  url: 'url',
+  createdAt: 'createdAt'
 } as const
 
-export type PhotoScalarFieldEnum = (typeof PhotoScalarFieldEnum)[keyof typeof PhotoScalarFieldEnum]
+export type FacebookpostScalarFieldEnum = (typeof FacebookpostScalarFieldEnum)[keyof typeof FacebookpostScalarFieldEnum]
 
 
 export const VenueScalarFieldEnum = {

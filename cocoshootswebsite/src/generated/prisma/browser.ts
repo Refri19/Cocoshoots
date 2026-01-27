@@ -33,10 +33,10 @@ export type feedback = Prisma.feedbackModel
  */
 export type user = Prisma.userModel
 /**
- * Model photo
+ * Model facebookpost
  * 
  */
-export type photo = Prisma.photoModel
+export type facebookpost = Prisma.facebookpostModel
 /**
  * Model Venue
  * 

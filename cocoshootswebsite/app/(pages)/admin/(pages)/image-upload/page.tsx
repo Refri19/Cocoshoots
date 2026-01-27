@@ -1,58 +1,22 @@
-import {prisma} from "@/lib/prisma"
-import UploadForm from "@/app/ui/components/UploadForm";
-import Image from "next/image";
+'use client';
+import { saveFacebookPost } from '@/app/api/image-upload/actions';
+import { FacebookEmbed } from 'react-social-media-embed';
 
-export default async function HomePage() {
-    // 1. Fetch all photos from the database
-    const photos = await prisma.photo.findMany({
-        orderBy: { id: "desc" },
-    });
-
+export default function PostManager({ savedPosts }) {
     return (
-        <main className="max-w-4xl mx-auto p-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">Image Vault</h1>
+        <div className="w-full max-w-md space-y-8 bg-white p-10 shadow-xl rounded-xl">
+            {/* Form to submit new URL */}
+            <form action={saveFacebookPost}>
+                <input name="facebookUrl" type="url" placeholder="Paste Facebook URL" required className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#D2532B] sm:text-sm" />
+                <button type="submit" className="w-full bg-[#253939] text-[#fef6e9] font-bold py-4 px-6 rounded-2xl hover:bg-[#D2532B] active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 text-lg shadow-lg disabled:opacity-70 disabled:cursor-not-allowed">Save Post</button>
+            </form>
+            <p> Note: Please link only facebook post inside this form, and make sure that the URL we are clicking here is a public post, further update(maybe) is that it only specifies inside the cocoshoots page</p>
 
-            <section className="mb-12 bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300">
-                <h2 className="text-xl font-semibold mb-4">Upload New Image</h2>
-                <UploadForm />
-            </section>
-
-            <hr className="my-10" />
-
-            <section>
-                <h2 className="text-2xl font-semibold mb-6">Gallery</h2>
-
-                {photos.length === 0 ? (
-                    <p className="text-gray-500 italic">No photos uploaded yet.</p>
-                ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {photos.map((photo) => {
-                            // 2. Convert the Bytes (Buffer) to a Base64 string for display
-                            const base64Image = photo.img
-                                ? `data:image/jpeg;base64,${photo.img.toString("base64")}`
-                                : null;
-
-                            return (
-                                <div key={photo.id} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                    {base64Image && (
-                                        <div className="relative h-48 w-full bg-gray-200">
-                                            <img
-                                                src={base64Image}
-                                                alt={photo.name || "Uploaded image"}
-                                                className="object-cover w-full h-full"
-                                            />
-                                        </div>
-                                    )}
-                                    <div className="p-3">
-                                        <p className="font-medium truncate">{photo.name || "Untitled"}</p>
-                                        <p className="text-xs text-gray-500 truncate">{photo.filename}</p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
-            </section>
-        </main>
+            <div className="posts-grid">
+                {savedPosts?.map((post) => (
+                    <FacebookEmbed key={post.id} url={post.url} width={550} />
+                ))}
+            </div>
+        </div>
     );
 }

@@ -11,6 +11,6 @@
 export type * from './models/blog'
 export type * from './models/feedback'
 export type * from './models/user'
-export type * from './models/photo'
+export type * from './models/facebookpost'
 export type * from './models/Venue'
 export type * from './commonInputTypes'

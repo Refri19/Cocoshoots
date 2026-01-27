@@ -387,7 +387,7 @@ export const ModelName = {
   blog: 'blog',
   feedback: 'feedback',
   user: 'user',
-  photo: 'photo',
+  facebookpost: 'facebookpost',
   Venue: 'Venue'
 } as const
 
@@ -404,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "blog" | "feedback" | "user" | "photo" | "venue"
+    modelProps: "blog" | "feedback" | "user" | "facebookpost" | "venue"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -630,77 +630,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    photo: {
-      payload: Prisma.$photoPayload<ExtArgs>
-      fields: Prisma.photoFieldRefs
+    facebookpost: {
+      payload: Prisma.$facebookpostPayload<ExtArgs>
+      fields: Prisma.facebookpostFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.photoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload> | null
+          args: Prisma.facebookpostFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.photoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         findFirst: {
-          args: Prisma.photoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload> | null
+          args: Prisma.facebookpostFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.photoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         findMany: {
-          args: Prisma.photoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>[]
+          args: Prisma.facebookpostFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>[]
         }
         create: {
-          args: Prisma.photoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         createMany: {
-          args: Prisma.photoCreateManyArgs<ExtArgs>
+          args: Prisma.facebookpostCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.photoCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>[]
+          args: Prisma.facebookpostCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>[]
         }
         delete: {
-          args: Prisma.photoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         update: {
-          args: Prisma.photoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         deleteMany: {
-          args: Prisma.photoDeleteManyArgs<ExtArgs>
+          args: Prisma.facebookpostDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.photoUpdateManyArgs<ExtArgs>
+          args: Prisma.facebookpostUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.photoUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>[]
+          args: Prisma.facebookpostUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>[]
         }
         upsert: {
-          args: Prisma.photoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$photoPayload>
+          args: Prisma.facebookpostUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$facebookpostPayload>
         }
         aggregate: {
-          args: Prisma.PhotoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePhoto>
+          args: Prisma.FacebookpostAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFacebookpost>
         }
         groupBy: {
-          args: Prisma.photoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PhotoGroupByOutputType>[]
+          args: Prisma.facebookpostGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacebookpostGroupByOutputType>[]
         }
         count: {
-          args: Prisma.photoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PhotoCountAggregateOutputType> | number
+          args: Prisma.facebookpostCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacebookpostCountAggregateOutputType> | number
         }
       }
     }
@@ -850,14 +850,13 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const PhotoScalarFieldEnum = {
+export const FacebookpostScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  filename: 'filename',
-  img: 'img'
+  url: 'url',
+  createdAt: 'createdAt'
 } as const
 
-export type PhotoScalarFieldEnum = (typeof PhotoScalarFieldEnum)[keyof typeof PhotoScalarFieldEnum]
+export type FacebookpostScalarFieldEnum = (typeof FacebookpostScalarFieldEnum)[keyof typeof FacebookpostScalarFieldEnum]
 
 
 export const VenueScalarFieldEnum = {
@@ -1034,7 +1033,7 @@ export type GlobalOmitConfig = {
   blog?: Prisma.blogOmit
   feedback?: Prisma.feedbackOmit
   user?: Prisma.userOmit
-  photo?: Prisma.photoOmit
+  facebookpost?: Prisma.facebookpostOmit
   venue?: Prisma.VenueOmit
 }
 

@@ -29,13 +29,9 @@ export default withAuth(
   }
 );
 
-// middleware.ts
-// middleware.ts
 export const config = {
     matcher: [
-        // Protect all admin routes
         '/admin/:path*',
-        // Protect other routes but ignore static files
         '/((?!api|_next/static|_next/image|favicon.ico).*)',
     ],
 };

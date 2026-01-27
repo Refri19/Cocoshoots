@@ -81,9 +81,11 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="transition-all active:scale-95 duration-200 flex items-center">
               <img
-                  src="cocoshoots-logo.png"
+                  src="/cocoshoots-logo.png"
+                  width={175}
+                  height={75}
                   alt="Cocoshoots Logo"
-                  className="h-12 w-auto max-w-45 object-contain"
+                  className=" object-contain"
               />
             </Link>
           </div>

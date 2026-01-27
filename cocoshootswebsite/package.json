@@ -12,7 +12,6 @@
     "@next-auth/typeorm-legacy-adapter": "0.0.2-canary.218",
     "@prisma/adapter-better-sqlite3": "^7.2.0",
     "@prisma/config": "^7.2.0",
-    "@uploadthing/react": "^7.3.3",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.561.0",
     "next": "16.1.1-canary.10",
@@ -22,8 +21,8 @@
     "puppeteer-core": "^24.34.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sqlite3": "^5.1.7",
-    "uploadthing": "^7.7.4"
+    "react-social-media-embed": "^2.5.18",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@prisma/client": "^7.2.0",
